@@ -3,9 +3,6 @@
 [![Build Status](https://travis-ci.org/tasfya/mir-migration.svg?branch=master)](https://travis-ci.org/tasfya/mir-migration)
 [![Code Coverage](https://scrutinizer-ci.com/g/tasfya/mir-migration/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/tasfya/mir-migration/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tasfya/mir-migration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tasfya/mir-migration/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/tasfya/mir-migration/v/stable.svg)](https://packagist.org/packages/tasfya/mir-migration)
-[![Total Downloads](https://poser.pugx.org/tasfya/mir-migration/downloads.svg)](https://packagist.org/packages/tasfya/mir-migration)
-[![License](https://poser.pugx.org/tasfya/mir-migration/license.svg)](https://packagist.org/packages/tasfya/mir-migration)
 
 @todo
 
