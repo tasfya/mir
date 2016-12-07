@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace MirMigration;
 
 
 use Symfony\Component\HttpFoundation\Request;

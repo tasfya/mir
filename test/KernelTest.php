@@ -1,5 +1,5 @@
 <?php
-use App\Kernel;
+use MirMigration\Kernel;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 

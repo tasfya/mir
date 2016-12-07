@@ -1,6 +1,6 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
-use App\Kernel;
+use MirMigration\Kernel;
 
 $loader = require __DIR__.'/../vendor/autoload.php';
 
