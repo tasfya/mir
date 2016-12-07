@@ -1,24 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hamza
- * Date: 07/12/16
- * Time: 11:06 ص
- */
-
-
 use App\Kernel;
-
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class KernelTest extends PHPUnit_Framework_TestCase
 {
-    private $request;
-    private $kernel;
 
-    public function setUp()
-    {
-        $this->request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
-        $this->kernel = new Kernel();
+    public function testHandle(){
+        $request = Request::createFromGlobals();
+        $kernel = new Kernel();
+        $this->assertEquals(Response::class, get_class($kernel->handle($request)));
     }
 
 }
