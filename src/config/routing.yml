@@ -1,0 +1,16 @@
+homepage:
+    path: /
+    controller: default@index
+    name: homepage
+example:
+    path: /example/{name}
+    controller: default@example
+    name: routing_example #optional
+    methods: [GET, POST]
+    #options:
+    #host:
+    #schemes:
+    #requirements:
+example2:
+    path: /example2
+    controller: default@example2
