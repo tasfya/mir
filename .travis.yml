@@ -14,7 +14,7 @@ matrix:
 
 before_script:
   - composer install --prefer-dist --dev
-  - cp config/database.travis.yml src/config/config.yml
+  - cp src/config/config.yml config/database.yml
   - mysql -e 'create database mir_migration'
 
 after_script:
