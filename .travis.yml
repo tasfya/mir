@@ -14,8 +14,7 @@ matrix:
 
 before_script:
   - composer install --prefer-dist --dev
-  - cp src/config/config.yml config/database.yml
-  - mysql -e 'create database mir_migration'
+  - mysql -e 'CREATE DATABASE mir_migration IF NOT EXISTS'
 
 after_script:
   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
