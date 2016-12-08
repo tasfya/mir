@@ -1,0 +1,7 @@
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "127.0.0.1"
+        dbname:   "mir_migration"
+        user:     "root"
+        password: "root"

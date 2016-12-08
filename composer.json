@@ -16,7 +16,9 @@
     "require": {
         "php": ">=5.5.0",
         "doctrine/dbal": "^2.5",
-        "symfony/http-foundation": "^3.2"
+        "symfony/http-foundation": "^3.2",
+        "symfony/routing": "^3.2",
+        "symfony/yaml": "~2.0"
     },
     "require-dev": {
         "pdepend/pdepend": "~1.0",
@@ -28,7 +30,8 @@
     },
     "autoload": {
         "psr-4": {
-            "MirMigration\\": "src/"
+            "MirMigration\\": "src/",
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
