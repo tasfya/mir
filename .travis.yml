@@ -5,16 +5,12 @@ php:
   - 5.5
   - hhvm
 
-env:
-  - DB=mysql
-
 matrix:
   allow_failures:
     - php: hhvm
 
 before_script:
   - composer install --prefer-dist --dev
-  - mysql -e 'CREATE DATABASE mir_migration IF NOT EXISTS'
 
 after_script:
   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
