@@ -9,7 +9,7 @@ class KernelTest extends PHPUnit_Framework_TestCase
     public function testHandle(){
         $request = Request::createFromGlobals();
         $kernel = new Kernel();
-        $this->assertEquals(Response::class, get_class($kernel->handle($request)));
+        $this->assertEquals(true, $kernel->handle($request) instanceof Response );
     }
 
 }
