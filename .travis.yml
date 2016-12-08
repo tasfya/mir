@@ -5,12 +5,17 @@ php:
   - 5.5
   - hhvm
 
+env:
+  - DB=mysql
+
 matrix:
   allow_failures:
     - php: hhvm
 
 before_script:
   - composer install --prefer-dist --dev
+  - cp config/database.travis.yml src/config/config.yml
+  - mysql -e 'create database mir_migration'
 
 after_script:
   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
