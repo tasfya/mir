@@ -1,6 +1,8 @@
 <?php
 namespace MirMigration\Lib;
 
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
@@ -10,8 +12,8 @@ class Routing
 {
     /** @var AppFactory */
     private $factory;
-    /** @var  UrlMatcher */
-    private $matcher;
+    /** @var  RouteCollection */
+    private $routes;
 
     /**
      * Routing constructor.
@@ -29,7 +31,7 @@ class Routing
      * @param \MirMigration\Lib\Yaml $parser
      */
     public function generateRoutes(Yaml $parser){
-        $routes = new RouteCollection();
+        $this->routes = new RouteCollection();
         $configs = $parser->loadFile($this->factory->getRootDir().'/src/config/routing.yml');
         foreach ($configs as $config){
             if( isset($config['path'], $config['controller']) ){
@@ -42,11 +44,9 @@ class Routing
                     isset($config['schemes']) ? $config['schemes'] : [],
                     isset($config['methods']) ? $config['methods'] : []
                 );
-                $routes->add(!isset($config['name'])? uniqid() : $config['name'], $route);
+                $this->routes->add(!isset($config['name'])? uniqid() : $config['name'], $route);
             }
         };
-        $context = new RequestContext('/');
-        $this->matcher = new UrlMatcher($routes, $context);
     }
 
     /**
@@ -54,19 +54,42 @@ class Routing
      * @return array
      */
     public function match($url){
+        $context = new RequestContext('/');
+        $matcher = new UrlMatcher($this->routes, $context);
         $url = $url == '' ? '/': $url;
-        $parameters = $this->matcher->match($url);
-        $parameters['controller'] = explode('@', $parameters['controller']);
+        try{
+            $parameters = $matcher->match($url);
+            $parameters['controller'] = explode('@', $parameters['controller']);
 
-        $params = [
-            'controller' => $parameters['controller'][0],
-            'action' => $parameters['controller'][1].'Action',
-            '_route' => $parameters['_route'][1],
-        ];
+            $params = [
+                'controller' => $parameters['controller'][0],
+                'action' => $parameters['controller'][1].'Action',
+                '_route' => $parameters['_route'][1],
+            ];
 
-        unset( $parameters['controller'], $parameters['_route'] );
-        $params['parameters'] = $parameters;
+            unset( $parameters['controller'], $parameters['_route'] );
+            $params['parameters'] = $parameters;
+        }
+        catch (ResourceNotFoundException $e){
+            $params = [
+                'controller' => 'controller',
+                'action' => 'error404Action',
+                'parameters' => [],
+            ];
+        }
 
         return $params;
+    }
+
+    /**
+     * @param $name
+     * @param mixed $parameters
+     * @param int $referenceType
+     * @return string
+     */
+    public function generateUrl($name, $parameters = array(), $referenceType = UrlGenerator::ABSOLUTE_PATH){
+        $context = new RequestContext('/');
+        $generator = new UrlGenerator($this->routes, $context);
+        return $generator->generate($name, $parameters, $referenceType);
     }
 }

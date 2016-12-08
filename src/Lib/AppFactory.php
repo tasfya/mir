@@ -42,7 +42,9 @@ class AppFactory
      * @return mixed
      */
     public function getController($parameters){
-        $classname = "MirMigration\\Controller\\".ucfirst($parameters['controller'])."Controller";
+        $name = $parameters['controller'] == 'controller' ? 'Controller' :
+            ucfirst($parameters['controller'])."Controller";
+        $classname = "MirMigration\\Controller\\".$name;
         return new $classname($this);
     }
 
