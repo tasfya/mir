@@ -9,15 +9,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Controller
 {
-    protected $request;
     protected $factory;
 
-    public function __construct(AppFactory $factory, Request $request)
+    /**
+     * Controller constructor.
+     * @param AppFactory $factory
+     */
+    public function __construct(AppFactory $factory)
     {
         $this->factory = $factory;
-        $this->request = $request;
     }
 
+    /**
+     * @return Response
+     */
     public function error404(){
         return new Response("Not found", 404);
     }
@@ -26,7 +31,7 @@ class Controller
      * @return Request
      */
     public function getRequest(){
-        return $this->request;
+        return $this->factory->getRequest();
     }
 
     /**

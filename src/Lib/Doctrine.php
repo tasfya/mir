@@ -6,8 +6,6 @@ namespace MirMigration\Lib;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
-use MirMigration\Lib\AppFactory;
-use MirMigration\Lib\Yaml;
 
 class Doctrine
 {
@@ -18,7 +16,7 @@ class Doctrine
      * @param \MirMigration\Lib\Yaml $parser
      * @return Connection
      */
-    static public function getInstance(AppFactory $factory, Yaml $parser){
+    public static function getInstance(AppFactory $factory, Yaml $parser){
         if( self::$instance !== null ) return self::$instance;
 
         $parameters = $parser->loadFile($factory->getRootDir().'/src/config/config.yml');
@@ -32,11 +30,6 @@ class Doctrine
         ];
         self::$instance = DriverManager::getConnection($connectionParams, $config);
         return self::getInstance($factory, $parser);
-    }
-
-
-    public function __construct(AppFactory $factory, Yaml $parser)
-    {
     }
 
 }
