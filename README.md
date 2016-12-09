@@ -24,4 +24,4 @@ for more detailed installation and usage instructions.
 
 ## Usage
 
-@todo
+copy .env-example to .env and make sure you add a valid credentials
