@@ -19,15 +19,19 @@ class Doctrine
     public static function getInstance(AppFactory $factory, Yaml $parser){
         if( self::$instance !== null ) return self::$instance;
 
-        $parameters = $parser->loadFile($factory->getRootDir().'/src/config/config.yml');
+        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../../');
+        $dotenv->load();
+
         $config = new Configuration();
         $connectionParams = [
-            'dbname' => $parameters['doctrine']['dbal']['dbname'],
-            'user' => $parameters['doctrine']['dbal']['user'],
-            'password' => $parameters['doctrine']['dbal']['password'],
-            'host' => $parameters['doctrine']['dbal']['host'],
-            'driver' => $parameters['doctrine']['dbal']['driver'],
+            'dbname' => getenv('DB_NAME'),
+            'user' => getenv('DB_USER'),
+            'host' => getenv('DB_HOST'),
+            'driver' => 'pdo_mysql',
         ];
+        if(getenv('DB_PASSWORD')){
+            $connectionParams['password'] = getenv('DB_PASSWORD'),
+        }
         self::$instance = DriverManager::getConnection($connectionParams, $config);
         return self::getInstance($factory, $parser);
     }
