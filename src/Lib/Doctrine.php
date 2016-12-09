@@ -6,6 +6,7 @@ namespace MirMigration\Lib;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
+use Dotenv\Dotenv;
 
 class Doctrine
 {
@@ -19,7 +20,7 @@ class Doctrine
     public static function getInstance(AppFactory $factory, Yaml $parser){
         if( self::$instance !== null ) return self::$instance;
 
-        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../../');
+        $dotenv = new Dotenv(__DIR__.'/../../');
         $dotenv->load();
 
         $config = new Configuration();
@@ -30,7 +31,7 @@ class Doctrine
             'driver' => 'pdo_mysql',
         ];
         if(getenv('DB_PASSWORD')){
-            $connectionParams['password'] = getenv('DB_PASSWORD'),
+            $connectionParams['password'] = getenv('DB_PASSWORD');
         }
         self::$instance = DriverManager::getConnection($connectionParams, $config);
         return self::getInstance($factory, $parser);
