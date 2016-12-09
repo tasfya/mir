@@ -11,6 +11,7 @@ matrix:
 
 before_script:
   - composer install --prefer-dist --dev
+  - export DB_USER=root DB_NAME=miraath DB_HOST=127.0.0.1
 
 after_script:
   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
