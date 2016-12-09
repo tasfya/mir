@@ -25,7 +25,7 @@ class CategoryControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testIndexAction(){
-        // $this->markTestSkipped("Database not found");
+        $this->markTestSkipped("Database not found");
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
         $this->assertEquals($data[0]->id,11);
@@ -33,7 +33,7 @@ class CategoryControllerTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testViewAction(){
-        // $this->markTestSkipped("Database not found");
+        $this->markTestSkipped("Database not found");
         $response = $this->controller->viewAction(71);
         $data = json_decode($response->getContent());
         $this->assertEquals($data->place,29);

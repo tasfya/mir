@@ -1,6 +1,10 @@
 <?php
+use MirMigration\AutoLoader;
 
-$autoloadFile = __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../src/AutoLoader.php';
+
+$autoloadFile = AutoLoader::load();
+
 if (!file_exists($autoloadFile)) {
     throw new RuntimeException('Install dependencies to run phpunit.');
 }

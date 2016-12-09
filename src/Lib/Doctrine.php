@@ -6,7 +6,6 @@ namespace MirMigration\Lib;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
-use Dotenv\Dotenv;
 
 class Doctrine
 {
@@ -19,9 +18,6 @@ class Doctrine
      */
     public static function getInstance(AppFactory $factory, Yaml $parser){
         if( self::$instance !== null ) return self::$instance;
-
-        $dotenv = new Dotenv(__DIR__.'/../../');
-        $dotenv->load();
 
         $config = new Configuration();
         $connectionParams = [
