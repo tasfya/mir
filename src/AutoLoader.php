@@ -13,8 +13,10 @@ class AutoLoader
         }
         require_once $loader;
 
-        $env = new Dotenv(__DIR__.'/../');
-        $env->load();
+        if( file_exists(__DIR__.'/../.env') ) {
+            $env = new Dotenv(__DIR__ . '/../');
+            $env->load();
+        }
 
         return $loader;
     }
