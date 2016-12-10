@@ -20,7 +20,7 @@ class CategoryControllerTest extends \PHPUnit_Framework_TestCase
     private $controller;
 
     public function setUp(){
-        $factory = new AppFactory(Request::createFromGlobals());
+        $factory = new AppFactory(Request::createFromGlobals(), 'prod');
         $this->controller = $factory->getController(['controller' => 'category']);
     }
 
