@@ -19,7 +19,9 @@
         "symfony/http-foundation": "^3.2",
         "symfony/routing": "^3.2",
         "symfony/yaml": "~2.0",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "doctrine/orm": "^2.5",
+        "jms/serializer": "^1.4"
     },
     "require-dev": {
         "pdepend/pdepend": "~1.0",

@@ -1,6 +1,7 @@
 <?php
 namespace MirMigration\Lib;
 
+use MirMigration\Lib\Doctrine\Doctrine;
 use Symfony\Component\HttpFoundation\Request;
 
 class AppFactory
@@ -24,10 +25,10 @@ class AppFactory
     }
 
     /**
-     * @return \Doctrine\DBAL\Connection
+     * @return Doctrine
      */
     public function getDoctrine(){
-        return Doctrine::getInstance($this, new Yaml());
+        return Doctrine::getInstance();
     }
 
     /**

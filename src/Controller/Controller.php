@@ -3,6 +3,7 @@ namespace MirMigration\Controller;
 
 
 use MirMigration\Lib\AppFactory;
+use MirMigration\Lib\Doctrine\Doctrine;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ class Controller
     }
 
     /**
-     * @return \Doctrine\DBAL\Connection
+     * @return Doctrine
      */
     public function getDoctrine(){
         return $this->factory->getDoctrine();
