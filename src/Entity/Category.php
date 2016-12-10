@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as Serializer;
  * @package MirMigration\Entity
  * @ORM\Entity(repositoryClass="MirMigration\Entity\CategoryRepository")
  * @ORM\Table(name="category")
- * @Serializer\AccessType("public_method")
+ * @Serializer\ExclusionPolicy("all")
  */
 class Category
 {
@@ -18,54 +18,63 @@ class Category
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose()
      **/
     private $id;
 
     /**
      * @var int
      * @ORM\Column(name="place", type="integer")
+     * @Serializer\Expose()
      **/
     private $place;
 
     /**
      * @var string
      * @ORM\Column(name="name", type="string", length=150)
+     * @Serializer\Expose()
      **/
     private $name;
 
     /**
      * @var string
      * @ORM\Column(name="description", type="text")
+     * @Serializer\Expose()
      **/
     private $description;
 
     /**
      * @var string
      * @ORM\Column(name="met_key", type="text")
+     * @Serializer\Expose()
      **/
     private $metKey;
 
     /**
      * @var string
      * @ORM\Column(name="met_desc", type="text")
+     * @Serializer\Expose()
      **/
     private $metDesc;
 
     /**
      * @var boolean
      * @ORM\Column(name="c_show", type="boolean")
+     * @Serializer\Expose()
      **/
     private $cShow;
 
     /**
      * @var boolean
      * @ORM\Column(name="show_mean", type="boolean")
+     * @Serializer\Expose()
      **/
     private $showMean;
 
     /**
      * @var int
      * @ORM\Column(name="ask_count", type="integer")
+     * @Serializer\Expose()
      **/
     private $askCount;
 

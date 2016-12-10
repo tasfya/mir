@@ -11,7 +11,6 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
-use JMS\Serializer\SerializerBuilder;
 
 class Doctrine
 {
@@ -38,10 +37,6 @@ class Doctrine
         $this->connection = DriverManager::getConnection($connectionParams, $config);
         $config = Setup::createConfiguration(true);
         $driver = new AnnotationDriver(new AnnotationReader(), __DIR__.'/../../');
-        SerializerBuilder::create()
-                ->setCacheDir(__DIR__.'/../../../var/cache/dev/')
-                ->setDebug(true)
-                ->build();
         AnnotationRegistry::registerLoader('class_exists');
         $config->setMetadataDriverImpl($driver);
         $this->entityManager = EntityManager::create($connectionParams, $config);

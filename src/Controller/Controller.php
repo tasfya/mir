@@ -2,9 +2,9 @@
 namespace MirMigration\Controller;
 
 
+use JMS\Serializer\SerializerBuilder;
 use MirMigration\Lib\AppFactory;
 use MirMigration\Lib\Doctrine\Doctrine;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,10 +48,13 @@ class Controller
      * @param mixed|null $data
      * @param int $status
      * @param array $headers
-     * @param bool $json
+     * @return Response
      */
-    public function jsonResponse($data = null, $status = 200, $headers = array(), $json = false){
-        return new JsonResponse($data, $status, $headers, $json);
+    public function jsonResponse($data = null, $status = 200, $headers = array()){
+        $headers['Content-Type'] = 'application/json';
+        $serializer = SerializerBuilder::create()->build();
+        $data = $serializer->serialize($data, 'json');
+        return new Response($data, $status, $headers);
     }
 
     /**

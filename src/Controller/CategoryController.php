@@ -7,7 +7,7 @@ class CategoryController extends Controller
 {
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(){
 
@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
     /**
      * @param int $id
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction($id){
 
