@@ -22,7 +22,7 @@ class Doctrine
     private $entityManager;
 
 
-    public function __construct()
+    public function __construct($devMode)
     {
         $config = new Configuration();
         $connectionParams = [
@@ -35,7 +35,7 @@ class Doctrine
             $connectionParams['password'] = getenv('DB_PASSWORD');
         }
         $this->connection = DriverManager::getConnection($connectionParams, $config);
-        $config = Setup::createConfiguration(true);
+        $config = Setup::createConfiguration($devMode);
         $driver = new AnnotationDriver(new AnnotationReader(), __DIR__.'/../../');
         AnnotationRegistry::registerLoader('class_exists');
         $config->setMetadataDriverImpl($driver);
@@ -65,10 +65,10 @@ class Doctrine
     /**
      * @return Doctrine
      */
-    public static function getInstance(){
+    public static function getInstance($devMode = false){
         if( self::$instance !== null ) return self::$instance;
-        self::$instance = new Doctrine();
-        return self::getInstance();
+        self::$instance = new Doctrine($devMode);
+        return self::getInstance($devMode);
     }
 
 }

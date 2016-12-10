@@ -7,14 +7,16 @@ use Symfony\Component\HttpFoundation\Request;
 class AppFactory
 {
     private $request;
+    private $env;
 
     /**
      * AppFactory constructor.
      * @param Request $request
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, $env)
     {
         $this->request = $request;
+        $this->env;
     }
 
     /**
@@ -28,7 +30,7 @@ class AppFactory
      * @return Doctrine
      */
     public function getDoctrine(){
-        return Doctrine::getInstance();
+        return Doctrine::getInstance($this->env == 'dev');
     }
 
     /**

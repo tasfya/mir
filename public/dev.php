@@ -10,6 +10,6 @@ $loader = AutoLoader::load();
 
 $request = Request::createFromGlobals();
 
-$kernel = new Kernel('prod');
+$kernel = new Kernel('dev');
 $response = $kernel->handle($request);
 $response->send();
