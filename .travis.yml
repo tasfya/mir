@@ -5,8 +5,6 @@ php:
 
 before_script:
   - mysql -e 'CREATE DATABASE mir;'
-  - unzip $TRAVIS_BUILD_DIR/db-export/mir_db.zip
-  - ls $TRAVIS_BUILD_DIR/db-export/
   - mysql -u root mir < $TRAVIS_BUILD_DIR/db-export/mir_db.sql
   - composer install --prefer-dist --dev
   - export DB_USER=root DB_NAME=mir DB_HOST=127.0.0.1
