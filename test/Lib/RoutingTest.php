@@ -12,6 +12,7 @@ namespace Lib;
 use MirMigration\Lib\AppFactory;
 use MirMigration\Lib\Routing;
 use MirMigration\Lib\Yaml;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class RoutingTest extends \PHPUnit_Framework_TestCase
@@ -24,7 +25,7 @@ class RoutingTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routing = new Routing(new AppFactory(), new Yaml());
+        $this->routing = new Routing(new AppFactory(Request::createFromGlobals(), 'prod'), new Yaml());
     }
 
     public function testMatch(){
