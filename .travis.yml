@@ -1,20 +1,21 @@
 language: php
 
 php:
-  - 5.6
   - 5.5
-  - hhvm
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 before_script:
+  - dev mysql -e 'CREATE DATABASE mir;'
+  - unzip ./db-export/mir_db.zip
+  - dev mysql -u root mir < ./db-export/mir_db.sql
   - composer install --prefer-dist --dev
-  - export DB_USER=root DB_NAME=miraath DB_HOST=127.0.0.1
+  - export DB_USER=root DB_NAME=mir DB_HOST=127.0.0.1
 
 after_script:
   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml
 
+services:
+  - mysql
+
 notifications:
   slack: miraath:A34LlZZ3Fqvc1YE45TS6WXsy
+
