@@ -1,3 +1,12 @@
+categories:
+    path: /categories
+    controller: category@index
+    methods: [GET]
+categories_view:
+    path: /categories/{id}
+    controller: category@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index

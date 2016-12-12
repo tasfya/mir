@@ -25,7 +25,7 @@ class RoutingTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->routing = new Routing(new AppFactory(Request::createFromGlobals()), new Yaml());
+        $this->routing = new Routing(new AppFactory(Request::createFromGlobals(), 'prod'), new Yaml());
     }
 
     public function testMatch(){

@@ -1,11 +1,15 @@
 <?php
+
 use Symfony\Component\HttpFoundation\Request;
 use MirMigration\Kernel;
+use MirMigration\AutoLoader;
 
-$loader = require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../src/AutoLoader.php';
+
+$loader = AutoLoader::load();
 
 $request = Request::createFromGlobals();
 
-$kernel = new Kernel();
+$kernel = new Kernel('prod');
 $response = $kernel->handle($request);
 $response->send();
