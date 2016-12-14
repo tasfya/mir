@@ -429,6 +429,12 @@ class Sound{
         $this->place = $place;
     }
 
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getDateTimestamp(){
+        return $this->getDate()->getTimestamp();
+    }
 
 
 
