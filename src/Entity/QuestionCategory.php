@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Table(name="category")
  * @Serializer\ExclusionPolicy("all")
  */
-class Category
+class QuestionCategory
 {
     /**
      * @var int
@@ -96,7 +96,7 @@ class Category
 
     /**
      * @param mixed $place
-     * @return Category
+     * @return QuestionCategory
      */
     public function setPlace($place)
     {
@@ -114,7 +114,7 @@ class Category
 
     /**
      * @param string $name
-     * @return Category
+     * @return QuestionCategory
      */
     public function setName($name)
     {
@@ -132,7 +132,7 @@ class Category
 
     /**
      * @param string $description
-     * @return Category
+     * @return QuestionCategory
      */
     public function setDescription($description)
     {
@@ -150,7 +150,7 @@ class Category
 
     /**
      * @param string $metKey
-     * @return Category
+     * @return QuestionCategory
      */
     public function setMetKey($metKey)
     {
@@ -168,7 +168,7 @@ class Category
 
     /**
      * @param string $metDesc
-     * @return Category
+     * @return QuestionCategory
      */
     public function setMetDesc($metDesc)
     {
@@ -186,7 +186,7 @@ class Category
 
     /**
      * @param bool $cShow
-     * @return Category
+     * @return QuestionCategory
      */
     public function setCShow($cShow)
     {
@@ -204,7 +204,7 @@ class Category
 
     /**
      * @param bool $showMean
-     * @return Category
+     * @return QuestionCategory
      */
     public function setShowMean($showMean)
     {
@@ -222,7 +222,7 @@ class Category
 
     /**
      * @param int $askCount
-     * @return Category
+     * @return QuestionCategory
      */
     public function setAskCount($askCount)
     {

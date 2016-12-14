@@ -1,9 +1,9 @@
 <?php
 namespace MirMigration\Controller;
 
-use MirMigration\Entity\Category;
+use MirMigration\Entity\QuestionCategory;
 
-class CategoryController extends Controller
+class QuestionCategoryController extends Controller
 {
 
     /**
@@ -11,11 +11,9 @@ class CategoryController extends Controller
      */
     public function indexAction(){
 
-        // @TODO : add filters, paginations
-
         $orders = $this->getRequest()->get('orders', ['place' => 'asc']);
 
-        $categories = $this->getDoctrine()->getRepository(Category::class)
+        $categories = $this->getDoctrine()->getRepository(QuestionCategory::class)
             ->findBy([], $orders);
 
         return $this->jsonResponse($categories);
@@ -27,7 +25,7 @@ class CategoryController extends Controller
      */
     public function viewAction($id){
 
-        $category =$this->getDoctrine()->getRepository(Category::class)
+        $category =$this->getDoctrine()->getRepository(QuestionCategory::class)
                     ->find($id);
 
         return $this->jsonResponse($category);

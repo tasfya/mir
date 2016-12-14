@@ -1,12 +1,3 @@
-categories:
-    path: /categories
-    controller: category@index
-    methods: [GET]
-categories_view:
-    path: /categories/{id}
-    controller: category@view
-    methods: [GET]
-
 # Reader Rotuing
 readers_all:
     path: /readers
@@ -35,6 +26,16 @@ sounds_all:
 sounds_one:
     path: /sounds/{id}
     controller: sound@view
+    methods: [GET]
+
+# Question Category Routing
+question_all:
+    path: /question-categories
+    controller: questionCategory@index
+    methods: [GET]
+question_categories_one:
+    path: /question-categories/{id}
+    controller: questionCategory@view
     methods: [GET]
 
 homepage:
