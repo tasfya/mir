@@ -2,6 +2,7 @@
 namespace MirMigration\Controller;
 
 use MirMigration\Entity\Sound;
+use MirMigration\Repository\SoundRepository;
 
 class SoundController extends Controller
 {
@@ -11,8 +12,15 @@ class SoundController extends Controller
      */
     public function indexAction(){
 
-        $sounds = $this->getDoctrine()->getRepository(Sound::class)
-            ->findAll();
+        $request = $this->getRequest();
+
+        /** @var SoundRepository $repository */
+        $repository = $this->getDoctrine()->getRepository(Sound::class);
+
+        $sounds = $repository->findByDates(
+                $request->get('date_begin', null) == null ?null: new \DateTime($request->get('date_begin')),
+                $request->get('date_end', null) == null ?null: new \DateTime($request->get('date_end'))
+            );
         foreach ($sounds as $k => $sound)
             $sounds[$k] = $this->filter($sound);
 

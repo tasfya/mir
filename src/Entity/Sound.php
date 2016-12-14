@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class Reader
  * @package MirMigration\Entity
- * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Entity(repositoryClass="MirMigration\Repository\SoundRepository")
  * @ORM\Table(name="sounds")
  * @Serializer\ExclusionPolicy("all")
  */
