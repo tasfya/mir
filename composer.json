@@ -40,7 +40,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "MirMigration\\Entity\\Proxies" : "var/cache/dev/Proxies/",
+            "MirMigration\\Entity\\Proxies\\" : "var/cache/dev/Proxies/",
             "MirMigration\\Test\\": "test/"
         }
     },
