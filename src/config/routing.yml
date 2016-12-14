@@ -17,6 +17,16 @@ redears_one:
     controller: reader@view
     methods: [GET]
 
+# Sound Category Rotuing
+sound_categories_all:
+    path: /sound-categories
+    controller: soundCategory@index
+    methods: [GET]
+sound_categories_one:
+    path: /sound-categories/{id}
+    controller: soundCategory@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index
