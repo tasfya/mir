@@ -7,7 +7,7 @@ use MirMigration\Lib\AppFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class SoundCategoryTest extends \PHPUnit_Framework_TestCase
+class SoundCategoryControllerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var SoundCategoryController */
     private $controller;

@@ -5,6 +5,7 @@ namespace MirMigration\Lib\Doctrine;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
@@ -30,13 +31,20 @@ class Doctrine
             'user' => getenv('DB_USER'),
             'host' => getenv('DB_HOST'),
             'driver' => 'pdo_mysql',
-            'charset'  => 'utf8',
+            'charset' => 'utf8'
         ];
         if(getenv('DB_PASSWORD')){
             $connectionParams['password'] = getenv('DB_PASSWORD');
         }
         $this->connection = DriverManager::getConnection($connectionParams, $config);
         $config = Setup::createConfiguration($devMode);
+
+        $cache = new ArrayCache();
+        $config->setMetadataCacheImpl($cache);
+        $config->setProxyDir(__DIR__.'/../../../var/cache/dev/Proxies');
+        $config->setProxyNamespace('MirMigration\\Entity\\Proxies');
+        $config->setAutoGenerateProxyClasses(false);
+
         $driver = new AnnotationDriver(new AnnotationReader(), __DIR__.'/../../');
         AnnotationRegistry::registerLoader('class_exists');
         $config->setMetadataDriverImpl($driver);

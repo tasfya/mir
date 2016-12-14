@@ -27,6 +27,16 @@ sound_categories_one:
     controller: soundCategory@view
     methods: [GET]
 
+# Sound Rotuing
+sounds_all:
+    path: /sounds
+    controller: sound@index
+    methods: [GET]
+sounds_one:
+    path: /sounds/{id}
+    controller: sound@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index
