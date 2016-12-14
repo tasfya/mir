@@ -42,6 +42,8 @@ class SoundController extends Controller
     private function filter(Sound $sound){
         if( in_array($sound->getPlace(), [0 , 66] ) )
             $sound->setCategory(null);
+        else
+            $sound->getCategory()->check();
         if( in_array($sound->getPlace(), [0] ) )
             $sound->setReader(null);
         return $sound;

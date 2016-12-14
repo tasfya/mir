@@ -436,7 +436,4 @@ class Sound{
         return $this->getDate()->getTimestamp();
     }
 
-
-
-
 }
