@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MirMigration\\Entity\\Proxies" : "var/cache/prod/Proxies/",
+            "MirMigration\\Entity\\Proxies\\" : "var/cache/prod/Proxies/",
             "MirMigration\\": "src/",
             "App\\": "app/"
         }
