@@ -12,17 +12,21 @@ class SoundControllerTest extends \PHPUnit_Framework_TestCase
     /** @var SoundController */
     private $controller;
 
+    /** @var AppFactory $factory */
+    private $factory;
+
     public function setUp(){
-        $factory = new AppFactory(Request::createFromGlobals(), 'prod');
-        $this->controller = $factory->getController(['controller' => 'sound']);
+        $this->factory = new AppFactory(Request::createFromGlobals(), 'prod');
+        $this->controller = $this->factory->getController(['controller' => 'sound']);
     }
 
     public function testIndexAction(){
+        $this->factory->getRequest()->query->set('date_begin', '2016-12-01');
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,28);
-        $this->assertEquals($data[0]->subject,"حق الراعي والرعية");
-        $this->assertEquals($data[1]->id,32);
+        $this->assertEquals($data[0]->id,3739);
+        $this->assertEquals($data[0]->subject,'المنظومة الحائية لابن أبي داود - الدرس 09');
+        $this->assertEquals($data[1]->id,3740);
     }
 
     public function testViewAction(){
