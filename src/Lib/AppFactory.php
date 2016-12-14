@@ -16,7 +16,7 @@ class AppFactory
     public function __construct(Request $request, $env)
     {
         $this->request = $request;
-        $this->env;
+        $this->env = $env;
     }
 
     /**

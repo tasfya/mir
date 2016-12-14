@@ -41,9 +41,10 @@ class Doctrine
 
         $cache = new ArrayCache();
         $config->setMetadataCacheImpl($cache);
-        $config->setProxyDir(__DIR__.'/../../../var/cache/dev/Proxies');
+        $dir = $devMode ? 'dev' : 'prod';
+        $config->setProxyDir(__DIR__.'/../../../var/cache/'.$dir.'/Proxies');
         $config->setProxyNamespace('MirMigration\\Entity\\Proxies');
-        $config->setAutoGenerateProxyClasses(false);
+        $config->setAutoGenerateProxyClasses(true);
 
         $driver = new AnnotationDriver(new AnnotationReader(), __DIR__.'/../../');
         AnnotationRegistry::registerLoader('class_exists');

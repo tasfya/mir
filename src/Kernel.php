@@ -10,7 +10,7 @@ class Kernel{
     private $env;
 
     public function __construct($env){
-        if( $env == 'dev' ) {
+        if( $env == 'dev' || true ) {
             ini_set('display_errors', 'On');
             error_reporting(E_ALL);
         }
