@@ -7,6 +7,16 @@ categories_view:
     controller: category@view
     methods: [GET]
 
+# Reader Rotuing
+readers_all:
+    path: /readers
+    controller: reader@index
+    methods: [GET]
+redears_one:
+    path: /readers/{id}
+    controller: reader@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index

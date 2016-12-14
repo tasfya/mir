@@ -30,6 +30,7 @@ class Doctrine
             'user' => getenv('DB_USER'),
             'host' => getenv('DB_HOST'),
             'driver' => 'pdo_mysql',
+            'charset'  => 'utf8',
         ];
         if(getenv('DB_PASSWORD')){
             $connectionParams['password'] = getenv('DB_PASSWORD');
