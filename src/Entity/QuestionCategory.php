@@ -79,6 +79,14 @@ class QuestionCategory
     private $askCount;
 
     /**
+     * @var QuestionCategory $category
+     * @Serializer\Expose()
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory")
+     * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -228,5 +236,30 @@ class QuestionCategory
     {
         $this->askCount = $askCount;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
+            $this->category = null;
+        } else {
+            $this->category->check();
+        }
     }
 }

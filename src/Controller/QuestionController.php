@@ -42,6 +42,8 @@ class QuestionController extends Controller
     private function filter(Question $question){
         if( in_array($question->getPlace(), [0,52,42,27,64,99] ) )
             $question->setCategory(null);
+        else
+            $question->getCategory()->check();
         if( in_array($question->getReaderId(), [0,58] ) )
             $question->setReader(null);
         return $question;
