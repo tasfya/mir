@@ -59,6 +59,7 @@ class SoundCategory{
 
     /**
      * @Serializer\Expose()
+     * @Serializer\MaxDepth(2)
      * @ORM\OneToMany(targetEntity="\MirMigration\Entity\SoundCategory", mappedBy="category")
      */
     private $categories;

@@ -2,6 +2,7 @@
 namespace MirMigration\Controller;
 
 
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 use MirMigration\Lib\AppFactory;
 use MirMigration\Lib\Doctrine\Doctrine;
@@ -53,7 +54,7 @@ class Controller
     public function jsonResponse($data = null, $status = 200, $headers = array()){
         $headers['Content-Type'] = 'application/json';
         $serializer = SerializerBuilder::create()->build();
-        $data = $serializer->serialize($data, 'json');
+        $data = $serializer->serialize($data, 'json', SerializationContext::create()->enableMaxDepthChecks());
         return new Response($data, $status, $headers);
     }
 
