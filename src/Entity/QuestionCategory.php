@@ -87,8 +87,8 @@ class QuestionCategory
     private $category;
 
     /**
-     * @var QuestionCategory $category
      * @Serializer\Expose()
+     * @Serializer\MaxDepth(2)
      * @ORM\OneToMany(targetEntity="\MirMigration\Entity\QuestionCategory", mappedBy="category")
      */
     private $categories;
@@ -271,7 +271,7 @@ class QuestionCategory
     }
 
     /**
-     * @return QuestionCategory
+     * @return mixed
      */
     public function getCategories()
     {

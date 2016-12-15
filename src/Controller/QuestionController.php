@@ -20,8 +20,10 @@ class QuestionController extends Controller{
                 $request->get('date_begin', null) == null ?null: new \DateTime($request->get('date_begin')),
                 $request->get('date_end', null) == null ?null: new \DateTime($request->get('date_end'))
             );
-        foreach ($questions as $k => $question)
-            $questions[$k] = $this->filter($question);
+        foreach ($questions as $k => $question){
+            /** @var Question $question */
+            $question->check();
+        }
 
         return $this->jsonResponse($questions);
     }
@@ -34,18 +36,9 @@ class QuestionController extends Controller{
         /** @var Question $question */
         $question = $this->getDoctrine()->getRepository(Question::class)
             ->find($id);
+        $question->check();
 
-        return $this->jsonResponse($this->filter($question));
-    }
-
-    private function filter(Question $question){
-        if( in_array($question->getPlace(), [0,52,42,27,64,99] ) )
-            $question->setCategory(null);
-        else
-            $question->getCategory()->check();
-        if( in_array($question->getReaderId(), [0,58] ) )
-            $question->setReader(null);
-        return $question;
+        return $this->jsonResponse($question);
     }
 
 }

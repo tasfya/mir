@@ -455,5 +455,13 @@ class Question{
         return $this;
     }
 
+    public function check(){
+        if( in_array($this->getPlace(), [0,52,42,27,64,99] ) )
+            $this->setCategory(null);
+        else
+            $this->getCategory()->check();
+        if( in_array($this->getReaderId(), [0,58] ) )
+            $this->setReader(null);
+    }
 
 }
