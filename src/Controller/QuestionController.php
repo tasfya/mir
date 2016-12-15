@@ -4,8 +4,7 @@ namespace MirMigration\Controller;
 use MirMigration\Entity\Question;
 use MirMigration\Repository\QuestionRepository;
 
-class QuestionController extends Controller
-{
+class QuestionController extends Controller{
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response

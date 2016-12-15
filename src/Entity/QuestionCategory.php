@@ -81,10 +81,17 @@ class QuestionCategory
     /**
      * @var QuestionCategory $category
      * @Serializer\Expose()
-     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory")
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory", inversedBy="categories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
     private $category;
+
+    /**
+     * @var QuestionCategory $category
+     * @Serializer\Expose()
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\QuestionCategory", mappedBy="category")
+     */
+    private $categories;
 
     /**
      * @return mixed
@@ -262,4 +269,14 @@ class QuestionCategory
             $this->category->check();
         }
     }
+
+    /**
+     * @return QuestionCategory
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+
 }

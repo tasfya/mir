@@ -12,9 +12,10 @@ class QuestionCategoryController extends Controller
     public function indexAction(){
 
         $orders = $this->getRequest()->get('orders', ['place' => 'asc']);
+        $conditions = $this->getRequest()->get('conditions', []);
 
         $categories = $this->getDoctrine()->getRepository(QuestionCategory::class)
-            ->findBy([], $orders);
+            ->findBy($conditions, $orders);
         foreach ($categories as $category){
             /** @var QuestionCategory $category */
             $category->check();
