@@ -135,6 +135,7 @@ class Question{
     private $reader;
 
     /**
+     * @var QuestionCategory
      * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
@@ -457,11 +458,11 @@ class Question{
 
     public function check(){
         if( in_array($this->getPlace(), [0,52,42,27,64,99] ) )
-            $this->setCategory(null);
+            $this->category = null;
         else
             $this->getCategory()->check();
         if( in_array($this->getReaderId(), [0,58] ) )
-            $this->setReader(null);
+            $this->reader = null;
     }
 
 }
