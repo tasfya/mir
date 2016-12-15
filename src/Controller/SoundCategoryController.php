@@ -11,8 +11,9 @@ class SoundCategoryController extends Controller
      */
     public function indexAction(){
 
+        $conditions = $this->getRequest()->get('conditions', []);
         $categories = $this->getDoctrine()->getRepository(SoundCategory::class)
-            ->findAll();
+            ->findBy($conditions);
         foreach ($categories as $category){
             /** @var SoundCategory $category */
             $category->check();

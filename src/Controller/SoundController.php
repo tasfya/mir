@@ -21,8 +21,10 @@ class SoundController extends Controller
                 $request->get('date_begin', null) == null ?null: new \DateTime($request->get('date_begin')),
                 $request->get('date_end', null) == null ?null: new \DateTime($request->get('date_end'))
             );
-        foreach ($sounds as $k => $sound)
-            $sounds[$k] = $this->filter($sound);
+        foreach ($sounds as $k => $sound){
+            /** @var Sound $sound */
+            $sound->check();
+        }
 
         return $this->jsonResponse($sounds);
     }
@@ -35,18 +37,9 @@ class SoundController extends Controller
         /** @var Sound $sound */
         $sound = $this->getDoctrine()->getRepository(Sound::class)
             ->find($id);
+        $sound->check();
 
-        return $this->jsonResponse($this->filter($sound));
-    }
-
-    private function filter(Sound $sound){
-        if( in_array($sound->getPlace(), [0 , 66] ) )
-            $sound->setCategory(null);
-        else
-            $sound->getCategory()->check();
-        if( in_array($sound->getPlace(), [0] ) )
-            $sound->setReader(null);
-        return $sound;
+        return $this->jsonResponse($sound);
     }
 
 }

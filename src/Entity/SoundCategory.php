@@ -52,10 +52,16 @@ class SoundCategory{
     /**
      * @var SoundCategory $category
      * @Serializer\Expose()
-     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory")
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory", inversedBy="categories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
     private $category;
+
+    /**
+     * @Serializer\Expose()
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\SoundCategory", mappedBy="category")
+     */
+    private $categories;
 
     /**
      * @return int
@@ -161,5 +167,15 @@ class SoundCategory{
             $this->category->check();
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+
 
 }
