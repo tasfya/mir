@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class Book
  * @package MirMigration\Entity
- * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Entity(repositoryClass="MirMigration\Repository\BookDischargeRepository")
  * @ORM\Table(name="bookdischarge")
  * @Serializer\ExclusionPolicy("all")
  */
@@ -73,7 +73,7 @@ class BookDischarge
 
     /**
      * @var string
-     * @ORM\Column(name="lesson_link", type="string", length=255)
+     * @ORM\Column(name="lessonlink", type="string", length=255)
      * @Serializer\Expose()
      **/
     private $lessonLink;
@@ -481,6 +481,23 @@ class BookDischarge
     {
         $this->book = $book;
         return $this;
+    }
+
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
+            $this->category = null;
+        } else {
+            $this->category->check();
+        }
+        if (in_array($this->readerId, [0,58])) {
+            $this->reader = null;
+        }
+        if (in_array($this->bookId, [0])) {
+            $this->book = null;
+        } else {
+            //$this->book->check();
+        }
     }
 
 }

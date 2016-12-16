@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class Book
  * @package MirMigration\Entity
- * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Entity(repositoryClass="MirMigration\Repository\BookRepository")
  * @ORM\Table(name="books")
  * @Serializer\ExclusionPolicy("all")
  */

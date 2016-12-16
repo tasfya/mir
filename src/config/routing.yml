@@ -48,6 +48,36 @@ questions_one:
     controller: question@view
     methods: [GET]
 
+# Book Routing
+books_all:
+    path: /books
+    controller: book@index
+    methods: [GET]
+books_one:
+    path: /books/{id}
+    controller: book@view
+    methods: [GET]
+
+# Book Category Routing
+book_categories_all:
+    path: /book-categories
+    controller: bookCategory@index
+    methods: [GET]
+book_categories_one:
+    path: /book-categories/{id}
+    controller: bookCategory@view
+    methods: [GET]
+
+# Book Discharge Routing
+book_discharges_all:
+    path: /book-discharges
+    controller: bookDischarge@index
+    methods: [GET]
+book_discharges_one:
+    path: /book-discharges/{id}
+    controller: bookDischarge@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index

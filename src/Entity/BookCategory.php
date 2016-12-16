@@ -170,4 +170,13 @@ class BookCategory
         $this->category = $category;
         return $this;
     }
+
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
+            $this->category = null;
+        } else {
+            $this->category->check();
+        }
+    }
 }
