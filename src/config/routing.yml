@@ -7,6 +7,36 @@ categories_view:
     controller: category@view
     methods: [GET]
 
+# Reader Rotuing
+readers_all:
+    path: /readers
+    controller: reader@index
+    methods: [GET]
+redears_one:
+    path: /readers/{id}
+    controller: reader@view
+    methods: [GET]
+
+# Sound Category Rotuing
+sound_categories_all:
+    path: /sound-categories
+    controller: soundCategory@index
+    methods: [GET]
+sound_categories_one:
+    path: /sound-categories/{id}
+    controller: soundCategory@view
+    methods: [GET]
+
+# Sound Rotuing
+sounds_all:
+    path: /sounds
+    controller: sound@index
+    methods: [GET]
+sounds_one:
+    path: /sounds/{id}
+    controller: sound@view
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index
