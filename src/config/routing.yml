@@ -1,10 +1,81 @@
-categories:
-    path: /categories
-    controller: category@index
+# Reader Routing
+readers_all:
+    path: /readers
+    controller: reader@index
     methods: [GET]
-categories_view:
-    path: /categories/{id}
-    controller: category@view
+redears_one:
+    path: /readers/{id}
+    controller: reader@view
+    methods: [GET]
+
+# Sound Category Routing
+sound_categories_all:
+    path: /sound-categories
+    controller: soundCategory@index
+    methods: [GET]
+sound_categories_one:
+    path: /sound-categories/{id}
+    controller: soundCategory@view
+    methods: [GET]
+
+# Sound Routing
+sounds_all:
+    path: /sounds
+    controller: sound@index
+    methods: [GET]
+sounds_one:
+    path: /sounds/{id}
+    controller: sound@view
+    methods: [GET]
+
+# Question Category Routing
+question_all:
+    path: /question-categories
+    controller: questionCategory@index
+    methods: [GET]
+question_categories_one:
+    path: /question-categories/{id}
+    controller: questionCategory@view
+    methods: [GET]
+
+# Question Routing
+questions_all:
+    path: /questions
+    controller: question@index
+    methods: [GET]
+questions_one:
+    path: /questions/{id}
+    controller: question@view
+    methods: [GET]
+
+# Book Routing
+books_all:
+    path: /books
+    controller: book@index
+    methods: [GET]
+books_one:
+    path: /books/{id}
+    controller: book@view
+    methods: [GET]
+
+# Book Category Routing
+book_categories_all:
+    path: /book-categories
+    controller: bookCategory@index
+    methods: [GET]
+book_categories_one:
+    path: /book-categories/{id}
+    controller: bookCategory@view
+    methods: [GET]
+
+# Book Discharge Routing
+book_discharges_all:
+    path: /book-discharges
+    controller: bookDischarge@index
+    methods: [GET]
+book_discharges_one:
+    path: /book-discharges/{id}
+    controller: bookDischarge@view
     methods: [GET]
 
 homepage:

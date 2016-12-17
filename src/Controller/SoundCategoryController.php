@@ -1,9 +1,9 @@
 <?php
 namespace MirMigration\Controller;
 
-use MirMigration\Entity\Category;
+use MirMigration\Entity\SoundCategory;
 
-class CategoryController extends Controller
+class SoundCategoryController extends Controller
 {
 
     /**
@@ -11,12 +11,8 @@ class CategoryController extends Controller
      */
     public function indexAction(){
 
-        // @TODO : add filters, paginations
-
-        $orders = $this->getRequest()->get('orders', ['place' => 'asc']);
-
-        $categories = $this->getDoctrine()->getRepository(Category::class)
-            ->findBy([], $orders);
+        $categories = $this->getDoctrine()->getRepository(SoundCategory::class)
+            ->findAll();
 
         return $this->jsonResponse($categories);
     }
@@ -27,7 +23,7 @@ class CategoryController extends Controller
      */
     public function viewAction($id){
 
-        $category =$this->getDoctrine()->getRepository(Category::class)
+        $category =$this->getDoctrine()->getRepository(SoundCategory::class)
                     ->find($id);
 
         return $this->jsonResponse($category);

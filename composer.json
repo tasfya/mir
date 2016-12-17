@@ -33,19 +33,21 @@
     },
     "autoload": {
         "psr-4": {
+            "MirMigration\\Entity\\Proxies\\" : "var/cache/prod/Proxies/",
             "MirMigration\\": "src/",
             "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "MirMigration\\Entity\\Proxies\\" : "var/cache/dev/Proxies/",
             "MirMigration\\Test\\": "test/"
         }
     },
     "scripts": {
         "run": [
             "echo 'Started web server on http://localhost:8000'",
-            "php -S localhost:8000"
+            "php -S localhost:8000 public/dev.php"
         ]
     }
 }
