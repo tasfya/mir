@@ -11,8 +11,13 @@ class SoundCategoryController extends Controller
      */
     public function indexAction(){
 
+        $conditions = $this->getRequest()->get('conditions', []);
         $categories = $this->getDoctrine()->getRepository(SoundCategory::class)
-            ->findAll();
+            ->findBy($conditions);
+        foreach ($categories as $category){
+            /** @var SoundCategory $category */
+            $category->check();
+        }
 
         return $this->jsonResponse($categories);
     }
@@ -22,9 +27,10 @@ class SoundCategoryController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction($id){
-
+        /** @var SoundCategory $category */
         $category =$this->getDoctrine()->getRepository(SoundCategory::class)
                     ->find($id);
+        $category->check();
 
         return $this->jsonResponse($category);
     }

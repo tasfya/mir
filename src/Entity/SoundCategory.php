@@ -50,6 +50,21 @@ class SoundCategory{
     private $cshow;
 
     /**
+     * @var SoundCategory $category
+     * @Serializer\Expose()
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory", inversedBy="categories")
+     * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
+     * @Serializer\Expose()
+     * @Serializer\MaxDepth(2)
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\SoundCategory", mappedBy="category")
+     */
+    private $categories;
+
+    /**
      * @return int
      */
     public function getId()
@@ -128,5 +143,40 @@ class SoundCategory{
         $this->cshow = $cshow;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function check(){
+        if( in_array($this->place, [0]) ) {
+            $this->category = null;
+        }
+        else {
+            $this->category->check();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+
 
 }
