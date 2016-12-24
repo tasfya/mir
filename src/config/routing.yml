@@ -87,6 +87,10 @@ moutounes:
     path: /advanced/moutounes
     controller: advanced\Moutoune@index
     methods: [GET]
+explanations:
+    path: /advanced/explanations/{matne_id}
+    controller: advanced\Explanation@index
+    methods: [GET]
 
 homepage:
     path: /
