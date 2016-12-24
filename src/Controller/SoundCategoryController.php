@@ -13,6 +13,10 @@ class SoundCategoryController extends Controller
 
         $categories = $this->getDoctrine()->getRepository(SoundCategory::class)
             ->findAll();
+        foreach ($categories as $category){
+            /** @var SoundCategory $category */
+            $category->check();
+        }
 
         return $this->jsonResponse($categories);
     }
@@ -25,6 +29,7 @@ class SoundCategoryController extends Controller
 
         $category =$this->getDoctrine()->getRepository(SoundCategory::class)
                     ->find($id);
+        $category->check();
 
         return $this->jsonResponse($category);
     }

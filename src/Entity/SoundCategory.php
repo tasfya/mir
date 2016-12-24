@@ -156,7 +156,7 @@ class SoundCategory{
     /**
      * @return SoundCategory
      */
-    public function getCategory(): SoundCategory
+    public function getCategory()
     {
         return $this->category;
     }
@@ -165,7 +165,7 @@ class SoundCategory{
      * @param SoundCategory $category
      * @return SoundCategory
      */
-    public function setCategory(SoundCategory $category): SoundCategory
+    public function setCategory(SoundCategory $category)
     {
         $this->category = $category;
         return $this;
