@@ -78,6 +78,12 @@ book_discharges_one:
     controller: bookDischarge@view
     methods: [GET]
 
+# Advanced Routing
+scholars:
+    path: /advanced/scholars
+    controller: advanced\Scholar@index
+    methods: [GET]
+
 homepage:
     path: /
     controller: default@index

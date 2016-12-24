@@ -2,6 +2,7 @@
 namespace MirMigration\Controller;
 
 
+use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 use MirMigration\Lib\AppFactory;
 use MirMigration\Lib\Doctrine\Doctrine;
@@ -48,12 +49,14 @@ class Controller
      * @param mixed|null $data
      * @param int $status
      * @param array $headers
+     * @param int|null $version
      * @return Response
      */
-    public function jsonResponse($data = null, $status = 200, $headers = array()){
+    public function jsonResponse($data = null, $status = 200, $headers = array(), $version = null){
         $headers['Content-Type'] = 'application/json';
         $serializer = SerializerBuilder::create()->build();
-        $data = $serializer->serialize($data, 'json');
+        if( $version == null ) $data = $serializer->serialize($data, 'json');
+        else $data = $serializer->serialize($data, 'json', SerializationContext::create()->setVersion($version));
         return new Response($data, $status, $headers);
     }
 
