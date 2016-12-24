@@ -55,7 +55,7 @@ class Controller
     public function jsonResponse($data = null, $status = 200, $headers = array(), $version = null){
         $headers['Content-Type'] = 'application/json';
         $serializer = SerializerBuilder::create()->build();
-        if( $version == null ) $data = $serializer->serialize($data, 'json');
+        if( $version == null ) $data = $serializer->serialize($data, 'json', SerializationContext::create()->enableMaxDepthChecks());
         else $data = $serializer->serialize($data, 'json', SerializationContext::create()->setVersion($version));
         return new Response($data, $status, $headers);
     }
