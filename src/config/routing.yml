@@ -83,6 +83,10 @@ scholars:
     path: /advanced/scholars
     controller: advanced\Scholar@index
     methods: [GET]
+moutounes:
+    path: /advanced/moutounes
+    controller: advanced\Moutoune@index
+    methods: [GET]
 
 homepage:
     path: /
