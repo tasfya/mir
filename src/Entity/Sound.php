@@ -454,7 +454,13 @@ class Sound{
         return $this->getDate()->getTimestamp();
     }
 
-
-
+    public function check(){
+        if( in_array($this->place, [0 , 66] ) )
+            $this->category = null;
+        else
+            $this->getCategory()->check();
+        if( in_array($this->place, [0] ) )
+            $this->reader = null;
+    }
 
 }
