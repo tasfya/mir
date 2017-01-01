@@ -5,22 +5,20 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Reader
+ * Class Book
  * @package MirMigration\Entity
- * @ORM\Entity(repositoryClass="MirMigration\Repository\SoundCategoryRepository")
- * @ORM\Table(name="soundcat")
+ * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Table(name="bookcat")
  * @Serializer\ExclusionPolicy("all")
  */
-class SoundCategory{
-
-    const CODE = 222;
+class BookCategory
+{
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $id;
 
@@ -28,15 +26,13 @@ class SoundCategory{
      * @var int
      * @ORM\Column(name="place", type="integer")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $place;
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="name", type="string", length=150)
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $name;
 
@@ -44,7 +40,6 @@ class SoundCategory{
      * @var string
      * @ORM\Column(name="description", type="text")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $description;
 
@@ -52,24 +47,21 @@ class SoundCategory{
      * @var int
      * @ORM\Column(name="cshow", type="integer")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $cshow;
 
     /**
-     * @var SoundCategory $category
+     * @var BookCategory $category
      * @Serializer\Expose()
-     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\BookCategory", inversedBy="categories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
-     * @Serializer\Since("1.0")
      */
     private $category;
 
     /**
      * @Serializer\Expose()
      * @Serializer\MaxDepth(2)
-     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\SoundCategory", mappedBy="category")
-     * @Serializer\Since("1.0")
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\BookCategory", mappedBy="category")
      */
     private $categories;
 
@@ -82,6 +74,14 @@ class SoundCategory{
     }
 
     /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
      * @return int
      */
     public function getPlace()
@@ -91,7 +91,7 @@ class SoundCategory{
 
     /**
      * @param int $place
-     * @return SoundCategory
+     * @return BookCategory
      */
     public function setPlace($place)
     {
@@ -109,7 +109,7 @@ class SoundCategory{
 
     /**
      * @param string $name
-     * @return SoundCategory
+     * @return BookCategory
      */
     public function setName($name)
     {
@@ -127,7 +127,7 @@ class SoundCategory{
 
     /**
      * @param string $description
-     * @return SoundCategory
+     * @return BookCategory
      */
     public function setDescription($description)
     {
@@ -145,7 +145,7 @@ class SoundCategory{
 
     /**
      * @param int $cshow
-     * @return SoundCategory
+     * @return BookCategory
      */
     public function setCshow($cshow)
     {
@@ -154,7 +154,7 @@ class SoundCategory{
     }
 
     /**
-     * @return SoundCategory
+     * @return BookCategory
      */
     public function getCategory()
     {
@@ -162,30 +162,12 @@ class SoundCategory{
     }
 
     /**
-     * @param SoundCategory $category
-     * @return SoundCategory
+     * @param BookCategory $category
+     * @return BookCategory
      */
-    public function setCategory(SoundCategory $category)
+    public function setCategory($category)
     {
         $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @param mixed $categories
-     * @return SoundCategory
-     */
-    public function setCategories($categories)
-    {
-        $this->categories = $categories;
         return $this;
     }
 
@@ -197,33 +179,4 @@ class SoundCategory{
             $this->category->check();
         }
     }
-
-    public function getMoutounes(){
-        $moutounes = [];
-        foreach ($this->categories as $category){
-            /** @var SoundCategory $category */
-            $moutounes = array_merge($moutounes, $category->getCategories()->toArray());
-        }
-        return $moutounes;
-    }
-
-    /**
-     * @Serializer\SerializedName("id")
-     * @Serializer\VirtualProperty()
-     * @Serializer\Since("0.1")
-     * @return string
-     */
-    public function getMoutouneId(){
-        return self::CODE.$this->id;
-    }
-
-    /**
-     * @Serializer\VirtualProperty()
-     * @Serializer\Since("0.1")
-     * @return string
-     */
-    public function getTitle(){
-        return str_replace('شرح ', '', $this->name);
-    }
-
 }

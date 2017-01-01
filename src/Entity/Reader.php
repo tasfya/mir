@@ -13,12 +13,16 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Reader
 {
+
+    const CODE = 111;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $id;
 
@@ -26,6 +30,7 @@ class Reader
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("0.1")
      **/
     private $name;
 
@@ -33,6 +38,7 @@ class Reader
      * @var string
      * @ORM\Column(name="country", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $country;
 
@@ -40,6 +46,7 @@ class Reader
      * @var string
      * @ORM\Column(name="pic", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $picture;
 
@@ -47,6 +54,7 @@ class Reader
      * @var string
      * @ORM\Column(name="description", type="text")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $description;
 
@@ -54,6 +62,7 @@ class Reader
      * @var string
      * @ORM\Column(name="details", type="text")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $details;
 
@@ -61,6 +70,7 @@ class Reader
      * @var boolean
      * @ORM\Column(name="cshow", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $cshow = false;
 
@@ -68,6 +78,7 @@ class Reader
      * @var string
      * @ORM\Column(name="email", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $email;
 
@@ -75,12 +86,14 @@ class Reader
      * @var string
      * @ORM\Column(name="tel", type="string", length=50)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $phone;
     /**
      * @var string
      * @ORM\Column(name="website", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $website;
 
@@ -88,6 +101,7 @@ class Reader
      * @var boolean
      * @ORM\Column(name="articles", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $articles = false;
 
@@ -95,6 +109,7 @@ class Reader
      * @var boolean
      * @ORM\Column(name="library", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $library = false;
 
@@ -102,6 +117,7 @@ class Reader
      * @var boolean
      * @ORM\Column(name="question", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $question = false;
 
@@ -109,6 +125,7 @@ class Reader
      * @var boolean
      * @ORM\Column(name="sound", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $sound = false;
 
@@ -352,5 +369,15 @@ class Reader
     {
         $this->sound = $sound;
         return $this;
+    }
+
+    /**
+     * @Serializer\Since("0.1")
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("id")
+     * @return string
+     */
+    public function getScholarId(){
+        return self::CODE.$this->id;
     }
 }

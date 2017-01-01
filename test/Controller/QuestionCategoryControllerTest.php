@@ -9,22 +9,25 @@
 namespace Controller;
 
 
-use MirMigration\Controller\CategoryController;
+use MirMigration\Controller\QuestionCategoryController;
 use MirMigration\Lib\AppFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class CategoryControllerTest extends \PHPUnit_Framework_TestCase
+class QuestionCategoryControllerTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var CategoryController */
+    /** @var QuestionCategoryController */
     private $controller;
+    /** @var AppFactory */
+    private $factory;
 
     public function setUp(){
-        $factory = new AppFactory(Request::createFromGlobals(), 'prod');
-        $this->controller = $factory->getController(['controller' => 'category']);
+        $this->factory = new AppFactory(Request::createFromGlobals(), 'prod');
+        $this->controller = $this->factory->getController(['controller' => 'questionCategory']);
     }
 
     public function testIndexAction(){
+        $this->factory->getRequest()->query->set('conditions', ['category' => 0]);
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
         $this->assertEquals($data[0]->id,11);

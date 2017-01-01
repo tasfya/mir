@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  * @ORM\Table(name="category")
  * @Serializer\ExclusionPolicy("all")
  */
-class Category
+class QuestionCategory
 {
     /**
      * @var int
@@ -79,6 +79,21 @@ class Category
     private $askCount;
 
     /**
+     * @var QuestionCategory $category
+     * @Serializer\Expose()
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory", inversedBy="categories")
+     * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
+     * @Serializer\Expose()
+     * @Serializer\MaxDepth(2)
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\QuestionCategory", mappedBy="category")
+     */
+    private $categories;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -96,7 +111,7 @@ class Category
 
     /**
      * @param mixed $place
-     * @return Category
+     * @return QuestionCategory
      */
     public function setPlace($place)
     {
@@ -114,7 +129,7 @@ class Category
 
     /**
      * @param string $name
-     * @return Category
+     * @return QuestionCategory
      */
     public function setName($name)
     {
@@ -132,7 +147,7 @@ class Category
 
     /**
      * @param string $description
-     * @return Category
+     * @return QuestionCategory
      */
     public function setDescription($description)
     {
@@ -150,7 +165,7 @@ class Category
 
     /**
      * @param string $metKey
-     * @return Category
+     * @return QuestionCategory
      */
     public function setMetKey($metKey)
     {
@@ -168,7 +183,7 @@ class Category
 
     /**
      * @param string $metDesc
-     * @return Category
+     * @return QuestionCategory
      */
     public function setMetDesc($metDesc)
     {
@@ -186,7 +201,7 @@ class Category
 
     /**
      * @param bool $cShow
-     * @return Category
+     * @return QuestionCategory
      */
     public function setCShow($cShow)
     {
@@ -204,7 +219,7 @@ class Category
 
     /**
      * @param bool $showMean
-     * @return Category
+     * @return QuestionCategory
      */
     public function setShowMean($showMean)
     {
@@ -222,11 +237,46 @@ class Category
 
     /**
      * @param int $askCount
-     * @return Category
+     * @return QuestionCategory
      */
     public function setAskCount($askCount)
     {
         $this->askCount = $askCount;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
+            $this->category = null;
+        } else {
+            $this->category->check();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+
 }

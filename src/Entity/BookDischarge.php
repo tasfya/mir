@@ -5,31 +5,48 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class Reader
+ * Class Book
  * @package MirMigration\Entity
- * @ORM\Entity(repositoryClass="MirMigration\Repository\SoundRepository")
- * @ORM\Table(name="sounds")
+ * @ORM\Entity(repositoryClass="MirMigration\Repository\BookDischargeRepository")
+ * @ORM\Table(name="bookdischarge")
  * @Serializer\ExclusionPolicy("all")
  */
-class Sound{
-
-    const CODE = 333;
-
+class BookDischarge
+{
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $id;
+
+    /**
+     * @var int
+     * @ORM\Column(name="place", type="integer")
+     * @Serializer\Expose()
+     **/
+    private $place;
+
+    /**
+     * @var int
+     * @ORM\Column(name="reader", type="integer")
+     * @Serializer\Expose()
+     **/
+    private $readerId;
+
+    /**
+     * @var int
+     * @ORM\Column(name="bookid", type="integer")
+     * @Serializer\Expose()
+     **/
+    private $bookId;
 
     /**
      * @var string
      * @ORM\Column(name="subject", type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $subject;
 
@@ -37,7 +54,6 @@ class Sound{
      * @var string
      * @ORM\Column(name="description", type="text")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $description;
 
@@ -45,7 +61,6 @@ class Sound{
      * @var string
      * @ORM\Column(name="path", type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $path;
 
@@ -53,15 +68,20 @@ class Sound{
      * @var string
      * @ORM\Column(name="docpath", type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $documentPath;
+
+    /**
+     * @var string
+     * @ORM\Column(name="lessonlink", type="string", length=255)
+     * @Serializer\Expose()
+     **/
+    private $lessonLink;
 
     /**
      * @var int
      * @ORM\Column(name="hits", type="integer")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $hits;
 
@@ -69,7 +89,6 @@ class Sound{
      * @var string
      * @ORM\Column(name="time", type="string", length=255)
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $time;
 
@@ -77,7 +96,6 @@ class Sound{
      * @var \DateTime
      * @ORM\Column(name="date", type="date")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $date;
 
@@ -85,73 +103,53 @@ class Sound{
      * @var int
      * @ORM\Column(name="downloadno", type="integer")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $downloadNo;
-
-    /**
-     * @var string
-     * @ORM\Column(name="duration", type="string", length=50)
-     * @Serializer\Expose()
-     * @Serializer\Since("1.0")
-     **/
-    private $duration;
-
-    /**
-     * @var string
-     * @ORM\Column(name="soundsize", type="string", length=50)
-     * @Serializer\Expose()
-     * @Serializer\Since("1.0")
-     **/
-    private $soundSize;
 
     /**
      * @var int
      * @ORM\Column(name="addby", type="integer")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $addBy;
 
     /**
-     * @var int
-     * @ORM\Column(name="place", type="integer")
-     * @Serializer\Expose()
-     * @Serializer\Since("1.0")
-     **/
-    private $place;
-
-    /**
-     * @var bool
+     * @var boolean
      * @ORM\Column(name="waiting", type="boolean")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $waiting = false;
 
     /**
-     * @var bool
+     * @var boolean
      * @ORM\Column(name="cshow", type="boolean")
      * @Serializer\Expose()
-     * @Serializer\Since("1.0")
      **/
     private $cshow = false;
 
     /**
+     * @var Reader
      * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\Reader")
      * @ORM\JoinColumn(name="reader", referencedColumnName="id", nullable=true)
-     * @Serializer\Since("1.0")
      */
     private $reader;
 
     /**
+     * @var BookCategory
      * @Serializer\Expose()
-     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory")
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\BookCategory", inversedBy="categories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
-     * @Serializer\Since("1.0")
      */
     private $category;
+
+    /**
+     * @var Book
+     * @Serializer\Expose()
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\Book")
+     * @ORM\JoinColumn(name="bookid", referencedColumnName="id", nullable=false)
+     */
+    private $book;
 
     /**
      * @return int
@@ -159,6 +157,60 @@ class Sound{
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param int $place
+     * @return BookDischarge
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReaderId()
+    {
+        return $this->readerId;
+    }
+
+    /**
+     * @param int $readerId
+     * @return BookDischarge
+     */
+    public function setReaderId($readerId)
+    {
+        $this->readerId = $readerId;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBookId()
+    {
+        return $this->bookId;
+    }
+
+    /**
+     * @param int $bookId
+     * @return BookDischarge
+     */
+    public function setBookId($bookId)
+    {
+        $this->bookId = $bookId;
+        return $this;
     }
 
     /**
@@ -171,7 +223,7 @@ class Sound{
 
     /**
      * @param string $subject
-     * @return Sound
+     * @return BookDischarge
      */
     public function setSubject($subject)
     {
@@ -189,7 +241,7 @@ class Sound{
 
     /**
      * @param string $description
-     * @return Sound
+     * @return BookDischarge
      */
     public function setDescription($description)
     {
@@ -207,7 +259,7 @@ class Sound{
 
     /**
      * @param string $path
-     * @return Sound
+     * @return BookDischarge
      */
     public function setPath($path)
     {
@@ -225,11 +277,29 @@ class Sound{
 
     /**
      * @param string $documentPath
-     * @return Sound
+     * @return BookDischarge
      */
     public function setDocumentPath($documentPath)
     {
         $this->documentPath = $documentPath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLessonLink()
+    {
+        return $this->lessonLink;
+    }
+
+    /**
+     * @param string $lessonLink
+     * @return BookDischarge
+     */
+    public function setLessonLink($lessonLink)
+    {
+        $this->lessonLink = $lessonLink;
         return $this;
     }
 
@@ -243,7 +313,7 @@ class Sound{
 
     /**
      * @param int $hits
-     * @return Sound
+     * @return BookDischarge
      */
     public function setHits($hits)
     {
@@ -261,7 +331,7 @@ class Sound{
 
     /**
      * @param string $time
-     * @return Sound
+     * @return BookDischarge
      */
     public function setTime($time)
     {
@@ -279,7 +349,7 @@ class Sound{
 
     /**
      * @param \DateTime $date
-     * @return Sound
+     * @return BookDischarge
      */
     public function setDate($date)
     {
@@ -297,47 +367,11 @@ class Sound{
 
     /**
      * @param int $downloadNo
-     * @return Sound
+     * @return BookDischarge
      */
     public function setDownloadNo($downloadNo)
     {
         $this->downloadNo = $downloadNo;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * @param string $duration
-     * @return Sound
-     */
-    public function setDuration($duration)
-    {
-        $this->duration = $duration;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSoundSize()
-    {
-        return $this->soundSize;
-    }
-
-    /**
-     * @param string $soundSize
-     * @return Sound
-     */
-    public function setSoundSize($soundSize)
-    {
-        $this->soundSize = $soundSize;
         return $this;
     }
 
@@ -351,7 +385,7 @@ class Sound{
 
     /**
      * @param int $addBy
-     * @return Sound
+     * @return BookDischarge
      */
     public function setAddBy($addBy)
     {
@@ -369,7 +403,7 @@ class Sound{
 
     /**
      * @param bool $waiting
-     * @return Sound
+     * @return BookDischarge
      */
     public function setWaiting($waiting)
     {
@@ -387,7 +421,7 @@ class Sound{
 
     /**
      * @param bool $cshow
-     * @return Sound
+     * @return BookDischarge
      */
     public function setCshow($cshow)
     {
@@ -405,7 +439,7 @@ class Sound{
 
     /**
      * @param mixed $reader
-     * @return Sound
+     * @return BookDischarge
      */
     public function setReader($reader)
     {
@@ -414,7 +448,7 @@ class Sound{
     }
 
     /**
-     * @return mixed
+     * @return BookCategory
      */
     public function getCategory()
     {
@@ -422,8 +456,8 @@ class Sound{
     }
 
     /**
-     * @param mixed $category
-     * @return Sound
+     * @param BookCategory $category
+     * @return BookDischarge
      */
     public function setCategory($category)
     {
@@ -432,35 +466,38 @@ class Sound{
     }
 
     /**
-     * @return int
+     * @return Book
      */
-    public function getPlace()
+    public function getBook()
     {
-        return $this->place;
+        return $this->book;
     }
 
     /**
-     * @param int $place
+     * @param Book $book
+     * @return BookDischarge
      */
-    public function setPlace($place)
+    public function setBook($book)
     {
-        $this->place = $place;
+        $this->book = $book;
+        return $this;
     }
 
-    /**
-     * @Serializer\VirtualProperty()
-     */
-    public function getDateTimestamp(){
-        return $this->getDate()->getTimestamp();
-    }
-
-    public function check(){
-        if( in_array($this->place, [0 , 66] ) )
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
             $this->category = null;
-        else
-            $this->getCategory()->check();
-        if( in_array($this->place, [0] ) )
+        } else {
+            $this->category->check();
+        }
+        if (in_array($this->readerId, [0,58])) {
             $this->reader = null;
+        }
+        if (in_array($this->bookId, [0])) {
+            $this->book = null;
+        } else {
+            //$this->book->check();
+        }
     }
 
 }

@@ -49,12 +49,14 @@ class Controller
      * @param mixed|null $data
      * @param int $status
      * @param array $headers
+     * @param int|null $version
      * @return Response
      */
-    public function jsonResponse($data = null, $status = 200, $headers = array()){
+    public function jsonResponse($data = null, $status = 200, $headers = array(), $version = null){
         $headers['Content-Type'] = 'application/json';
         $serializer = SerializerBuilder::create()->build();
-        $data = $serializer->serialize($data, 'json', SerializationContext::create()->enableMaxDepthChecks());
+        if( $version == null ) $data = $serializer->serialize($data, 'json', SerializationContext::create()->enableMaxDepthChecks());
+        else $data = $serializer->serialize($data, 'json', SerializationContext::create()->setVersion($version));
         return new Response($data, $status, $headers);
     }
 
