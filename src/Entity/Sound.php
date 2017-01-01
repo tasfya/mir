@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Sound{
 
+    const CODE = 333;
 
     /**
      * @var int
@@ -20,6 +21,7 @@ class Sound{
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $id;
 
@@ -27,6 +29,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="subject", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $subject;
 
@@ -34,6 +37,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="description", type="text")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $description;
 
@@ -41,6 +45,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="path", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $path;
 
@@ -48,6 +53,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="docpath", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $documentPath;
 
@@ -55,6 +61,7 @@ class Sound{
      * @var int
      * @ORM\Column(name="hits", type="integer")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $hits;
 
@@ -62,6 +69,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="time", type="string", length=255)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $time;
 
@@ -69,6 +77,7 @@ class Sound{
      * @var \DateTime
      * @ORM\Column(name="date", type="date")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $date;
 
@@ -76,6 +85,7 @@ class Sound{
      * @var int
      * @ORM\Column(name="downloadno", type="integer")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $downloadNo;
 
@@ -83,6 +93,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="duration", type="string", length=50)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $duration;
 
@@ -90,6 +101,7 @@ class Sound{
      * @var string
      * @ORM\Column(name="soundsize", type="string", length=50)
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $soundSize;
 
@@ -97,6 +109,7 @@ class Sound{
      * @var int
      * @ORM\Column(name="addby", type="integer")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $addBy;
 
@@ -104,6 +117,7 @@ class Sound{
      * @var int
      * @ORM\Column(name="place", type="integer")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $place;
 
@@ -111,6 +125,7 @@ class Sound{
      * @var bool
      * @ORM\Column(name="waiting", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $waiting = false;
 
@@ -118,6 +133,7 @@ class Sound{
      * @var bool
      * @ORM\Column(name="cshow", type="boolean")
      * @Serializer\Expose()
+     * @Serializer\Since("1.0")
      **/
     private $cshow = false;
 
@@ -125,6 +141,7 @@ class Sound{
      * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\Reader")
      * @ORM\JoinColumn(name="reader", referencedColumnName="id", nullable=true)
+     * @Serializer\Since("1.0")
      */
     private $reader;
 
@@ -132,6 +149,7 @@ class Sound{
      * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\SoundCategory")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
+     * @Serializer\Since("1.0")
      */
     private $category;
 

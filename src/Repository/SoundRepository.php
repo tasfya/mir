@@ -27,4 +27,12 @@ class SoundRepository extends EntityRepository{
         return $q->getQuery()->getResult();
     }
 
+    public function getExplanationsByMatne($id){
+        return $this->createQueryBuilder('e')
+            ->leftJoin('e.category', 'c')
+            ->where( 'e.place = :id or c.place = :id' )
+            ->setParameter('id' , $id)
+            ->getQuery()->getResult();
+    }
+
 }
