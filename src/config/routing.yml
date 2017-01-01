@@ -95,6 +95,10 @@ explanation_courses:
     path: /advanced/explanation-courses/{explanation_id}
     controller: advanced\ExplanationCourse@index
     methods: [GET]
+khotabs:
+    path: /advanced/khotabs
+    controller: advanced\Khotab@index
+    methods: [GET]
 
 homepage:
     path: /

@@ -10,7 +10,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class SoundRepository extends EntityRepository{
 
-    public function findByDates( \DateTime $begin = null, \DateTime $end = null ){
+    /**
+     * @param \DateTime|null $begin
+     * @param \DateTime|null $end
+     * @param int|null $category
+     * @return array
+     */
+    public function findByDates( \DateTime $begin = null, \DateTime $end = null, $category = null ){
         $q = $this->createQueryBuilder('s')
             ->where('1=1');
 
@@ -22,6 +28,12 @@ class SoundRepository extends EntityRepository{
         if( $end !== null ){
             $q->andWhere('s.date <= :end')
                 ->setParameter('end', $end);
+        }
+
+        if( $category !== null ){
+            $q->leftJoin('s.category', 'c')
+                ->andWhere('c.place = :category')
+                ->setParameter('category', $category);
         }
 
         return $q->getQuery()->getResult();
