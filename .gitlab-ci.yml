@@ -1,0 +1,28 @@
+image: php:5.5
+
+variables:
+  # Configure mysql environment variables (https://hub.docker.com/r/_/mysql/)
+  MYSQL_DATABASE: mir
+  MYSQL_ROOT_PASSWORD: mysql
+
+services:
+  - mysql:latest
+
+before_script:
+  - apt-get -qq update
+  - apt-get -qq -y install mysql-client unzip git
+  - docker-php-ext-install pdo_mysql
+  - mysql -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}" < db-export/mir_db.sql
+  # - mysql -u root --password=mysql --host=mysql mir < db-export/mir_db.sql
+  - curl --silent --show-error https://getcomposer.org/installer | php
+  # - chmod +x composer.phar
+  - mv composer.phar /usr/local/bin/composer
+  - composer install --prefer-dist
+  - export DB_USER=root DB_PASSWORD="${MYSQL_ROOT_PASSWORD}" DB_NAME=${MYSQL_DATABASE} DB_HOST=mysql
+
+test:app:
+  script:
+  - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml --repository miraath/mir-migration
+
+# notifications:
+#   slack: miraath:A34LlZZ3Fqvc1YE45TS6WXsy
