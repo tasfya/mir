@@ -13,6 +13,7 @@ before_script:
   - apt-get -qq -y --no-install-recommends install apt-utils
   - apt-get -qq -y install mysql-client unzip git
   - docker-php-ext-install pdo_mysql
+  - mysql -e 'CREATE DATABASE $MYSQL_DATABASE;'
   - mysql -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}" < db-export/mir_db.sql
   - echo "DB_USER=root" > .env
   - echo "DB_NAME=miraath" >> .env
@@ -24,9 +25,13 @@ before_script:
   - composer install --prefer-dist
   # - export DB_USER=root DB_PASSWORD="${MYSQL_ROOT_PASSWORD}" DB_NAME=${MYSQL_DATABASE} DB_HOST=mysql
 
-test:app:
+# test:app:
+#   script:
+#   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml --repository miraath/mir-migration
+
+test:db:
   script:
-  - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml --repository miraath/mir-migration
+  - echo "SHOW TABLES;" | mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}"
 
 # notifications:
 #   slack: miraath:A34LlZZ3Fqvc1YE45TS6WXsy
