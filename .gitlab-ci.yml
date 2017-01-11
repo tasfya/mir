@@ -17,7 +17,7 @@ before_script:
   - mysql -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}" < db-export/mir_db.sql
   - echo "DB_USER=root" > .env
   - echo "DB_NAME=miraath" >> .env
-  - echo "DB_PASSWORD=error" >> .env
+  - echo "DB_PASSWORD=password" >> .env
   - echo "DB_HOST=mysql" >> .env
   - curl --silent --show-error https://getcomposer.org/installer | php
   # - chmod +x composer.phar
@@ -25,13 +25,13 @@ before_script:
   - composer install --prefer-dist
   # - export DB_USER=root DB_PASSWORD="${MYSQL_ROOT_PASSWORD}" DB_NAME=${MYSQL_DATABASE} DB_HOST=mysql
 
-# test:app:
-#   script:
-#   - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml --repository miraath/mir-migration
-
-test:db:
+test:app:
   script:
-  - echo "SHOW TABLES;" | mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}"
+  - vendor/bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml --repository miraath/mir-migration
+
+# test:db:
+#   script:
+#   - echo "SHOW TABLES;" | mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}"
 
 # notifications:
 #   slack: miraath:A34LlZZ3Fqvc1YE45TS6WXsy
