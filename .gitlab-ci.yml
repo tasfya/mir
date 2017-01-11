@@ -13,7 +13,7 @@ before_script:
   - apt-get -qq -y --no-install-recommends install apt-utils
   - apt-get -qq -y install mysql-client unzip git
   - docker-php-ext-install pdo_mysql
-  - mysql -e 'CREATE DATABASE $MYSQL_DATABASE;'
+  - mysql -e -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql 'CREATE DATABASE $MYSQL_DATABASE;'
   - mysql -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}" < db-export/mir_db.sql
   - echo "DB_USER=root" > .env
   - echo "DB_NAME=miraath" >> .env
