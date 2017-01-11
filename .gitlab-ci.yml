@@ -3,7 +3,7 @@ image: php:5.5
 variables:
   # Configure mysql environment variables (https://hub.docker.com/r/_/mysql/)
   MYSQL_DATABASE: miraath
-  MYSQL_ROOT_PASSWORD: password 
+  MYSQL_ROOT_PASSWORD: password
 
 services:
   - mysql:latest
@@ -16,7 +16,7 @@ before_script:
   - mysql -u root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}" < db-export/mir_db.sql
   - echo "DB_USER=root" > .env
   - echo "DB_NAME=miraath" >> .env
-  - echo "DB_PASSWORD=mysql" >> .env
+  - echo "DB_PASSWORD=error" >> .env
   - echo "DB_HOST=mysql" >> .env
   - curl --silent --show-error https://getcomposer.org/installer | php
   # - chmod +x composer.phar
