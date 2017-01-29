@@ -48,8 +48,15 @@ class ExplanationController extends Controller
 
         /** @var SoundRepository $repository */
         $repository = $this->getDoctrine()->getRepository(Sound::class);
-        $explanations = $repository->getExplanations($moutounes, $request->query->get('begin', null),
+        $all_explanations = $repository->getExplanations($moutounes, $request->query->get('begin', null),
                 $request->query->get('end', null));
+
+        $explanations = array();
+        foreach ($all_explanations as $explanation){
+            /** @var Sound $explanation */
+            $explanations[$explanation->getExplanationId()] = $explanation;
+        }
+        $explanations = array_values($explanations);
 
         return $this->jsonResponse($explanations, 200, [], "0.1");
     }
