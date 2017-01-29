@@ -38,4 +38,20 @@ class ExplanationController extends Controller
         ]]);
     }
 
+    public function allAction(){
+        $request = $this->getRequest();
+        /** @var SoundCategory $category */
+        $category = $this->getDoctrine()->getRepository(SoundCategory::class)
+            ->find(3);
+        $category->check();
+        $moutounes = $category->getMoutounes();
+
+        /** @var SoundRepository $repository */
+        $repository = $this->getDoctrine()->getRepository(Sound::class);
+        $explanations = $repository->getExplanations($moutounes, $request->query->get('begin', null),
+                $request->query->get('end', null));
+
+        return $this->jsonResponse($explanations, 200, [], "0.1");
+    }
+
 }

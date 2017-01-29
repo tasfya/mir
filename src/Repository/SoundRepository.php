@@ -47,4 +47,25 @@ class SoundRepository extends EntityRepository{
             ->getQuery()->getResult();
     }
 
+    public function getExplanations($moutounes, $begin = null, $end = null){
+        $q =  $this->createQueryBuilder('e')
+            ->leftJoin('e.category', 'c')
+            ->where( 'e.category in (:moutounes) or c.category in (:moutounes)' )
+            ->setParameter('moutounes' , $moutounes);
+
+        if( $begin !== null ){
+            $begin = new \DateTime($begin);
+            $q->andWhere('e.date >= :begin')
+                ->setParameter('begin', $begin);
+        }
+
+        if( $end !== null ){
+            $end = new \DateTime($end);
+            $q->andWhere('e.date <= :end')
+                ->setParameter('end', $end);
+        }
+
+        return $q->getQuery()->getResult();
+    }
+
 }
