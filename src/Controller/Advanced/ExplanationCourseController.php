@@ -22,7 +22,7 @@ class ExplanationCourseController extends Controller
             ++$order;
             /** @var Sound $sound */
             $explanations[] = [
-                'id' => Sound::CODE.$sound->getId(),
+                'id' => $sound->getId(),
                 'sort_number' => $order,
                 'url' => 'http://miraath.net/'.str_replace('../','', $sound->getPath()),
             ];

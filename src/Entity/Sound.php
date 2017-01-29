@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Sound{
 
-    const CODE = 333;
+    const CODE = 3;
 
     /**
      * @var int

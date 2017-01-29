@@ -378,6 +378,6 @@ class Reader
      * @return string
      */
     public function getScholarId(){
-        return self::CODE.$this->id;
+        return $this->id;
     }
 }
