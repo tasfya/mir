@@ -30,4 +30,14 @@ class ExplanationControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data[0]->scholar_id,11);
         $this->assertEquals($data[0]->matne_id, 623);
     }
+
+    public function testallAction(){
+        $this->factory->getRequest()->query->set('begin', '2016-11-01');
+        $this->factory->getRequest()->query->set('end', '2016-11-15');
+        $response = $this->controller->allAction();
+        $data = json_decode($response->getContent());
+        $this->assertEquals($data[0]->scholar_id,15);
+        $this->assertEquals($data[0]->matne_id, 596);
+        $this->assertEquals($data[0]->explanation_id, 15596);
+    }
 }

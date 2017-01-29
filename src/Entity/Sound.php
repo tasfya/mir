@@ -449,6 +449,7 @@ class Sound{
 
     /**
      * @Serializer\VirtualProperty()
+     * @Serializer\since("1.0")
      */
     public function getDateTimestamp(){
         return $this->getDate()->getTimestamp();
@@ -461,6 +462,33 @@ class Sound{
             $this->getCategory()->check();
         if( in_array($this->place, [0] ) )
             $this->reader = null;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getExplanationId(){
+        return $this->getScholarId().$this->getMatneId();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getScholarId(){
+        return $this->getReader()->getScholarId();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getMatneId(){
+        if( $this->getCategory() == null ) return $this->place;
+        return
+            $this->getCategory()->getCategory()->getPlace() == 3
+                ? $this->getPlace() : $this->getCategory()->getPlace();
     }
 
 }
