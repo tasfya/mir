@@ -34,7 +34,7 @@ class ExplanationController extends Controller
 
         return $this->jsonResponse([[
             'scholar_id' => $sounds[0]->getReader()->getScholarId(),
-            'matne_id' => SoundCategory::CODE.$matne_id,
+            'matne_id' => $matne_id,
         ]]);
     }
 

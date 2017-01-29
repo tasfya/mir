@@ -27,7 +27,7 @@ class ExplanationControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction(623);
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->scholar_id,11111);
-        $this->assertEquals($data[0]->matne_id, 222623);
+        $this->assertEquals($data[0]->scholar_id,11);
+        $this->assertEquals($data[0]->matne_id, 623);
     }
 }

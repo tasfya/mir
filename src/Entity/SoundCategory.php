@@ -214,7 +214,7 @@ class SoundCategory{
      * @return string
      */
     public function getMoutouneId(){
-        return self::CODE.$this->id;
+        return $this->id;
     }
 
     /**
