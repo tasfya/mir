@@ -65,7 +65,12 @@ class SoundRepository extends EntityRepository{
                 ->setParameter('end', $end);
         }
 
-        return $q->getQuery()->getResult();
+        return $q
+            ->orderBy('e.reader', 'asc')
+            ->addOrderBy('e.place', 'asc')
+            ->addOrderBy('e.id', 'asc')
+            ->getQuery()
+            ->getResult();
     }
 
 }

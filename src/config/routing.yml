@@ -95,6 +95,10 @@ explanations:
     path: /advanced/explanations/{matne_id}
     controller: advanced\Explanation@index
     methods: [GET]
+explanation_all_courses:
+    path: /advanced/explanation-courses
+    controller: advanced\ExplanationCourse@all
+    methods: [GET]
 explanation_courses:
     path: /advanced/explanation-courses/{explanation_id}
     controller: advanced\ExplanationCourse@index
