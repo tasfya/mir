@@ -79,7 +79,7 @@ book_discharges_one:
     methods: [GET]
 
 # Article Category Routing
-book_categories_all:
+article_categories_all:
     path: /article-categories
     controller: articleCategory@index
     methods: [GET]

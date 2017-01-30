@@ -58,7 +58,7 @@ class ArticleCategory
     /**
      * @var ArticleCategory $category
      * @Serializer\Expose()
-     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\BookCategory", inversedBy="subCategories")
+     * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\ArticleCategory", inversedBy="subCategories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
     private $parent;
@@ -67,7 +67,7 @@ class ArticleCategory
      * @var ArticleCategory[]
      * @Serializer\Expose()
      * @Serializer\MaxDepth(2)
-     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\BookCategory", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="\MirMigration\Entity\ArticleCategory", mappedBy="parent")
      */
     private $subCategories;
 
@@ -187,5 +187,13 @@ class ArticleCategory
         return $this;
     }
 
+    public function check()
+    {
+        if (in_array($this->place, [0])) {
+            $this->parent = null;
+        } else {
+            $this->parent->check();
+        }
+    }
 
 }
