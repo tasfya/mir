@@ -78,6 +78,12 @@ book_discharges_one:
     controller: bookDischarge@view
     methods: [GET]
 
+# Article Category Routing
+book_categories_all:
+    path: /article-categories
+    controller: articleCategory@index
+    methods: [GET]
+
 # Advanced Routing
 scholars:
     path: /advanced/scholars
