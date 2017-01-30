@@ -27,7 +27,7 @@ class ExplanationControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction(623);
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->scholar_id,11);
+        $this->assertEquals($data[0]->scholar_id,11111);
         $this->assertEquals($data[0]->matne_id, 623);
     }
 
@@ -36,8 +36,8 @@ class ExplanationControllerTest extends \PHPUnit_Framework_TestCase
         $this->factory->getRequest()->query->set('end', '2016-11-15');
         $response = $this->controller->allAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->scholar_id,1);
-        $this->assertEquals($data[0]->matne_id, 643);
+        $this->assertEquals($data[0]->scholar_id,1111);
+        $this->assertEquals($data[0]->matne_id, 222643);
         $this->assertEquals($data[0]->explanation_id, 1643);
     }
 }

@@ -27,8 +27,8 @@ class KhotabControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent(), false);
-        $this->assertEquals($data[0]->id,38);
+        $this->assertEquals($data[0]->id,33338);
         $this->assertEquals($data[0]->url,'http://miraath.net/files/audio/sh_muhammad_bin_haady_1435-05-13.mp3');
-        $this->assertEquals($data[1]->id,3069);
+        $this->assertEquals($data[1]->id,3333069);
     }
 }
