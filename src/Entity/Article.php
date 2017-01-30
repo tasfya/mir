@@ -94,7 +94,7 @@ class Article
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -102,7 +102,7 @@ class Article
     /**
      * @return int
      */
-    public function getTopic(): int
+    public function getTopic()
     {
         return $this->topic;
     }
@@ -111,7 +111,7 @@ class Article
      * @param int $topic
      * @return Article
      */
-    public function setTopic(int $topic): Article
+    public function setTopic($topic)
     {
         $this->topic = $topic;
         return $this;
@@ -120,7 +120,7 @@ class Article
     /**
      * @return int
      */
-    public function getReaderId(): int
+    public function getReaderId()
     {
         return $this->readerId;
     }
@@ -129,7 +129,7 @@ class Article
      * @param int $readerId
      * @return Article
      */
-    public function setReaderId(int $readerId): Article
+    public function setReaderId($readerId)
     {
         $this->readerId = $readerId;
         return $this;
@@ -138,7 +138,7 @@ class Article
     /**
      * @return string
      */
-    public function getSubject(): string
+    public function getSubject()
     {
         return $this->subject;
     }
@@ -147,7 +147,7 @@ class Article
      * @param string $subject
      * @return Article
      */
-    public function setSubject(string $subject): Article
+    public function setSubject($subject)
     {
         $this->subject = $subject;
         return $this;
@@ -156,7 +156,7 @@ class Article
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -165,7 +165,7 @@ class Article
      * @param string $description
      * @return Article
      */
-    public function setDescription(string $description): Article
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;
@@ -174,7 +174,7 @@ class Article
     /**
      * @return string
      */
-    public function getText(): string
+    public function getText()
     {
         return $this->text;
     }
@@ -183,7 +183,7 @@ class Article
      * @param string $text
      * @return Article
      */
-    public function setText(string $text): Article
+    public function setText($text)
     {
         $this->text = $text;
         return $this;
@@ -192,7 +192,7 @@ class Article
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate()
     {
         return $this->date;
     }
@@ -201,7 +201,7 @@ class Article
      * @param \DateTime $date
      * @return Article
      */
-    public function setDate(\DateTime $date): Article
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
         return $this;
@@ -210,7 +210,7 @@ class Article
     /**
      * @return int
      */
-    public function getCounter(): int
+    public function getCounter()
     {
         return $this->counter;
     }
@@ -219,7 +219,7 @@ class Article
      * @param int $counter
      * @return Article
      */
-    public function setCounter(int $counter): Article
+    public function setCounter($counter)
     {
         $this->counter = $counter;
         return $this;

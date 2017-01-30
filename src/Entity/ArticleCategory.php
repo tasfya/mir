@@ -74,7 +74,7 @@ class ArticleCategory
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -82,7 +82,7 @@ class ArticleCategory
     /**
      * @return int
      */
-    public function getPlace(): int
+    public function getPlace()
     {
         return $this->place;
     }
@@ -91,7 +91,7 @@ class ArticleCategory
      * @param int $place
      * @return ArticleCategory
      */
-    public function setPlace(int $place): ArticleCategory
+    public function setPlace($place)
     {
         $this->place = $place;
         return $this;
@@ -100,7 +100,7 @@ class ArticleCategory
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -109,7 +109,7 @@ class ArticleCategory
      * @param string $name
      * @return ArticleCategory
      */
-    public function setName(string $name): ArticleCategory
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -118,7 +118,7 @@ class ArticleCategory
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -127,7 +127,7 @@ class ArticleCategory
      * @param string $description
      * @return ArticleCategory
      */
-    public function setDescription(string $description): ArticleCategory
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;
@@ -136,7 +136,7 @@ class ArticleCategory
     /**
      * @return int
      */
-    public function getCshow(): int
+    public function getCshow()
     {
         return $this->cshow;
     }
@@ -145,7 +145,7 @@ class ArticleCategory
      * @param int $cshow
      * @return ArticleCategory
      */
-    public function setCshow(int $cshow): ArticleCategory
+    public function setCshow($cshow)
     {
         $this->cshow = $cshow;
         return $this;
@@ -154,7 +154,7 @@ class ArticleCategory
     /**
      * @return ArticleCategory
      */
-    public function getParent(): ArticleCategory
+    public function getParent()
     {
         return $this->parent;
     }
@@ -163,7 +163,7 @@ class ArticleCategory
      * @param ArticleCategory $parent
      * @return ArticleCategory
      */
-    public function setParent(ArticleCategory $parent): ArticleCategory
+    public function setParent(ArticleCategory $parent)
     {
         $this->parent = $parent;
         return $this;
