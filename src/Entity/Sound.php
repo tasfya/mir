@@ -14,6 +14,7 @@ use JMS\Serializer\Annotation as Serializer;
 class Sound{
 
     const CODE = 333;
+    const KHOTABE = 444;
 
     /**
      * @var int
