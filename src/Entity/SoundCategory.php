@@ -214,7 +214,7 @@ class SoundCategory{
      * @return string
      */
     public function getMoutouneId(){
-        return $this->id;
+        return self::CODE.$this->id;
     }
 
     /**
@@ -224,6 +224,16 @@ class SoundCategory{
      */
     public function getTitle(){
         return str_replace('شرح ', '', $this->name);
+    }
+
+    /**
+     * @Serializer\SerializedName("old_id")
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     * @return string
+     */
+    public function getOldId(){
+        return $this->id;
     }
 
 }

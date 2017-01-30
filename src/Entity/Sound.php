@@ -13,7 +13,7 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Sound{
 
-    const CODE = 3;
+    const CODE = 333;
 
     /**
      * @var int
@@ -158,7 +158,7 @@ class Sound{
      */
     public function getId()
     {
-        return $this->id;
+        return self::CODE.$this->id;
     }
 
     /**
@@ -489,6 +489,10 @@ class Sound{
         return
             $this->getCategory()->getCategory()->getPlace() == 3
                 ? $this->getPlace() : $this->getCategory()->getPlace();
+    }
+
+    public function getOldId(){
+        return $this->id;
     }
 
 }
