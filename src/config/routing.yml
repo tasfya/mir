@@ -84,6 +84,12 @@ article_categories_all:
     controller: articleCategory@index
     methods: [GET]
 
+# Article Routing
+article_all:
+    path: /articles
+    controller: article@index
+    methods: [GET]
+
 # Advanced Routing
 scholars:
     path: /advanced/scholars
