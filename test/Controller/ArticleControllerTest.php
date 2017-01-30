@@ -22,10 +22,11 @@ class ArticleControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testIndexAction(){
         $this->factory->getRequest()->query->set('date_begin', '2016-11-01');
+        $this->factory->getRequest()->query->set('date_end', '2016-11-05');
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,2448);
-        $this->assertEquals($data[0]->subject,'بحث مسألة الصعق واللطم وشق الثياب عند سماع الذكر للعلامة محمد بن هادي المدخلي ');
-        $this->assertEquals($data[1]->id,2436);
+        $this->assertEquals($data[0]->id,2436);
+        $this->assertEquals($data[0]->subject,'تأمل هذه النعم العظيمة');
+        $this->assertEquals($data[1]->id,2437);
     }
 }
