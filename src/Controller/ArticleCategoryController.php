@@ -13,7 +13,7 @@ class ArticleCategoryController extends Controller
     public function indexAction(){
 
         $categories = $this->getDoctrine()->getRepository(ArticleCategory::class)
-            ->findBy(array('place' => 0));
+            ->findAll();
         foreach ($categories as $category){
             /** @var BookCategory $category */
             $category->check();

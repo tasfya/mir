@@ -18,12 +18,14 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class ArticleCategory
 {
+
+    const CODE = 555;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Expose()
      **/
     private $id;
 
@@ -57,7 +59,6 @@ class ArticleCategory
 
     /**
      * @var ArticleCategory $category
-     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\ArticleCategory", inversedBy="subCategories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
@@ -65,16 +66,23 @@ class ArticleCategory
 
     /**
      * @var ArticleCategory[]
-     * @Serializer\Expose()
-     * @Serializer\MaxDepth(2)
      * @ORM\OneToMany(targetEntity="\MirMigration\Entity\ArticleCategory", mappedBy="parent")
      */
     private $subCategories;
 
     /**
      * @return int
+     * @Serializer\VirtualProperty()
      */
     public function getId()
+    {
+        return self::CODE.$this->id;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getOldId()
     {
         return $this->id;
     }

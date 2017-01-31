@@ -25,8 +25,8 @@ class ArticleControllerTest extends \PHPUnit_Framework_TestCase
         $this->factory->getRequest()->query->set('date_end', '2016-11-05');
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,2436);
+        $this->assertEquals($data[0]->id,6662436);
         $this->assertEquals($data[0]->subject,'تأمل هذه النعم العظيمة');
-        $this->assertEquals($data[1]->id,2437);
+        $this->assertEquals($data[1]->id,6662437);
     }
 }

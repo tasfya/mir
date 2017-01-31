@@ -22,8 +22,8 @@ class ArticleCategoryControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,7);
-        $this->assertEquals($data[1]->id,8);
+        $this->assertEquals($data[0]->id,5557);
+        $this->assertEquals($data[1]->id,5558);
     }
 
 }
