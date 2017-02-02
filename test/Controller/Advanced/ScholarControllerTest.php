@@ -27,8 +27,8 @@ class ScholarControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,1);
+        $this->assertEquals($data[0]->id,1111);
         $this->assertEquals($data[0]->name,"محمد بن هادي المدخلي");
-        $this->assertEquals($data[1]->id,2);
+        $this->assertEquals($data[1]->id,1112);
     }
 }

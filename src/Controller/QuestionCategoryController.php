@@ -11,7 +11,7 @@ class QuestionCategoryController extends Controller
      */
     public function indexAction(){
 
-        $orders = $this->getRequest()->get('orders', ['place' => 'asc']);
+        $orders = $this->getRequest()->get('orders', ['id' => 'asc']);
         $conditions = $this->getRequest()->get('conditions', []);
 
         $categories = $this->getDoctrine()->getRepository(QuestionCategory::class)

@@ -19,12 +19,14 @@ use JMS\Serializer\Annotation as Serializer;
 
 class Article
 {
+
+    const CODE = 666;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Expose()
      **/
     private $id;
 
@@ -93,8 +95,18 @@ class Article
 
     /**
      * @return int
+     * @Serializer\VirtualProperty()
      */
     public function getId()
+    {
+        return self::CODE.$this->id;
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
+    public function getOldId()
     {
         return $this->id;
     }

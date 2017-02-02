@@ -57,6 +57,7 @@ class ExplanationCourseController extends Controller
             $order++;
             $sounds[] =  [
                 'id' => $sound->getId(),
+                'old_id' => $sound->getOldId(),
                 'explanation_id' => $sound->getExplanationId(),
                 'sort_number' => $order,
                 'url' => 'http://old.miraath.net/'.str_replace('../','', $sound->getPath()),

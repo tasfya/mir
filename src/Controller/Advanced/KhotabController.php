@@ -27,7 +27,8 @@ class KhotabController extends Controller
         foreach ($sounds as $k => $sound){
             /** @var Sound $sound */
             $khotabs[] = [
-                'id' => $sound->getId(),
+                'id' => Sound::KHOTABE.$sound->getOldId(),
+                'old_id' => $sound->getOldId(),
                 'url' => 'http://miraath.net/'.str_replace('../','', $sound->getPath()),
                 'title' => $sound->getSubject(),
                 'description' => $sound->getDescription(),
