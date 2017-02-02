@@ -24,9 +24,9 @@ class QuestionControllerTest extends \PHPUnit_Framework_TestCase
         $this->factory->getRequest()->query->set('date_begin', '2016-12-01');
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,4191);
+        $this->assertEquals($data[0]->id,8884191);
         $this->assertEquals($data[0]->subject,'أفضل تحقيق لعلل الترمذي');
-        $this->assertEquals($data[1]->id,4192);
+        $this->assertEquals($data[1]->id,8884192);
     }
 
     public function testViewAction(){
@@ -34,6 +34,6 @@ class QuestionControllerTest extends \PHPUnit_Framework_TestCase
         $data = json_decode($response->getContent());
         $this->assertEquals($data->subject,"حكم حمل الطفل الذي يضُر نفسه في الصلاة");
         $this->assertEquals($data->created_time,"1480801537");
-        $this->assertEquals($data->reader->name,'  عبد الله بن عبد الرحيم البخاري');
+        $this->assertEquals($data->scholar_id,1119);
     }
 }

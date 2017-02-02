@@ -13,7 +13,8 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Sound{
 
-    const CODE = 3;
+    const CODE = 333;
+    const KHOTABE = 444;
 
     /**
      * @var int
@@ -158,7 +159,7 @@ class Sound{
      */
     public function getId()
     {
-        return $this->id;
+        return self::CODE.$this->id;
     }
 
     /**
@@ -469,7 +470,7 @@ class Sound{
      * @Serializer\Since("0.1")
      */
     public function getExplanationId(){
-        return $this->getScholarId().$this->getMatneId();
+        return $this->getReader()->getId().$this->getCategoryId();
     }
 
     /**
@@ -485,10 +486,17 @@ class Sound{
      * @Serializer\Since("0.1")
      */
     public function getMatneId(){
+        return SoundCategory::CODE.$this->getCategoryId();
+    }
+    public function getCategoryId(){
         if( $this->getCategory() == null ) return $this->place;
         return
             $this->getCategory()->getCategory()->getPlace() == 3
                 ? $this->getPlace() : $this->getCategory()->getPlace();
+    }
+
+    public function getOldId(){
+        return $this->id;
     }
 
 }

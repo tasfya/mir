@@ -13,12 +13,14 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Question{
 
+
+    const CODE = 888;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Expose()
      **/
     private $id;
 
@@ -128,7 +130,6 @@ class Question{
     private $waiting = false;
 
     /**
-     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\Reader")
      * @ORM\JoinColumn(name="reader", referencedColumnName="id", nullable=true)
      */
@@ -136,7 +137,6 @@ class Question{
 
     /**
      * @var QuestionCategory
-     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
@@ -144,10 +144,38 @@ class Question{
 
     /**
      * @return int
+     * @Serializer\VirtualProperty()
      */
     public function getId()
     {
+        return self::CODE.$this->id;
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
+    public function getOldId()
+    {
         return $this->id;
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
+    public function getScholarId()
+    {
+        return $this->getReader()->getScholarId();
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
+    public function getCategoryId()
+    {
+        return $this->getCategory() == null ?: $this->getCategory()->getId();
     }
 
     /**
