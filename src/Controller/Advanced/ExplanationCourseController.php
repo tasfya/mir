@@ -4,6 +4,7 @@ namespace MirMigration\Controller\Advanced;
 
 use MirMigration\Controller\Controller;
 use MirMigration\Entity\Sound;
+use MirMigration\Entity\SoundCategory;
 use MirMigration\Repository\SoundRepository;
 
 class ExplanationCourseController extends Controller
@@ -24,11 +25,45 @@ class ExplanationCourseController extends Controller
             $explanations[] = [
                 'id' => $sound->getId(),
                 'sort_number' => $order,
-                'url' => 'http://miraath.net/'.str_replace('../','', $sound->getPath()),
+                'url' => 'http://old.miraath.net/'.str_replace('../','', $sound->getPath()),
             ];
         }
 
         return $this->jsonResponse($explanations, 200, [], "0.1");
+    }
+
+    public function allAction(){
+        $request = $this->getRequest();
+        /** @var SoundCategory $category */
+        $category = $this->getDoctrine()->getRepository(SoundCategory::class)
+            ->find(3);
+        $category->check();
+        $moutounes = $category->getMoutounes();
+
+        /** @var SoundRepository $repository */
+        $repository = $this->getDoctrine()->getRepository(Sound::class);
+        $all_sounds = $repository->getExplanations($moutounes, $request->query->get('begin', null),
+            $request->query->get('end', null));
+
+        $sounds = array();
+        $explanation_id = null;
+        $order = 0;
+        foreach ($all_sounds as $sound){
+            /** @var Sound $sound */
+            if( $explanation_id != $sound->getExplanationId() ){
+                $order = 0;
+                $explanation_id = $sound->getExplanationId();
+            }
+            $order++;
+            $sounds[] =  [
+                'id' => $sound->getId(),
+                'explanation_id' => $sound->getExplanationId(),
+                'sort_number' => $order,
+                'url' => 'http://old.miraath.net/'.str_replace('../','', $sound->getPath()),
+            ];
+        }
+
+        return $this->jsonResponse($sounds);
     }
 
 }
