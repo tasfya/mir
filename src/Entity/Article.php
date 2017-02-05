@@ -292,7 +292,21 @@ class Article
     /**
      * @Serializer\VirtualProperty()
      */
+    public function getScholarName(){
+        return $this->getReader()->getName();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
     public function getCategoryId(){
+        return $this->getCategory()->getId();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getCategoryName(){
         return $this->getCategory()->getId();
     }
 }

@@ -34,6 +34,7 @@ class KhotabController extends Controller
                 'description' => $sound->getDescription(),
                 'timestamp' => $sound->getDateTimestamp(),
                 'scholar_id' => $sound->getReader()->getScholarId(),
+                'scholar_name' => $sound->getReader()->getName(),
             ];
         }
 
