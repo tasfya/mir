@@ -307,6 +307,6 @@ class Article
      * @Serializer\VirtualProperty()
      */
     public function getCategoryName(){
-        return $this->getCategory() == null ? "" : $this->getCategory()->getName();
+        return $this->getCategory() == null ? "UNCATEGORIZED" : $this->getCategory()->getName();
     }
 }

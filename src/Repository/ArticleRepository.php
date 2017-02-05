@@ -9,7 +9,8 @@ class ArticleRepository extends EntityRepository
 {
     public function findByDates( \DateTime $begin = null, \DateTime $end = null ){
         $q = $this->createQueryBuilder('a')
-            ->where('1=1');
+            ->where('a.text != :text AND a.text IS NOT NULL')
+            ->setParameter('text', '');
 
         if( $begin !== null ){
             $q->andWhere('a.date >= :begin')
