@@ -503,7 +503,8 @@ class Sound{
      * @Serializer\Since("0.1")
      */
     public function getMatneName(){
-        return $this->getParentCategory()->getName();
+
+        return $this->getParentCategory() == null ? "" :$this->getParentCategory()->getName();
     }
 
     public function getParentCategory(){
@@ -514,7 +515,8 @@ class Sound{
     }
 
     public function getCategoryId(){
-        return $this->getParentCategory()->getId();
+
+        return $this->getParentCategory() == null ? $this->place : $this->getParentCategory()->getId();
     }
 
     public function getOldId(){
