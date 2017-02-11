@@ -166,7 +166,7 @@ class Question{
      */
     public function getScholarId()
     {
-        return $this->getReader()->getScholarId();
+        return $this->getReader() == null ? : $this->getReader()->getScholarId();
     }
 
     /**
