@@ -286,13 +286,27 @@ class Article
      * @Serializer\VirtualProperty()
      */
     public function getScholarId(){
-        return $this->getReader()->getScholarId();
+        return $this->getReader() == null ? $this->readerId : $this->getReader()->getScholarId();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getScholarName(){
+        return $this->getReader() == null ? "" : $this->getReader()->getName();
     }
 
     /**
      * @Serializer\VirtualProperty()
      */
     public function getCategoryId(){
-        return $this->getCategory()->getId();
+        return $this->getCategory() == null ? $this->topic : $this->getCategory()->getId();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getCategoryName(){
+        return $this->getCategory() == null ? "UNCATEGORIZED" : $this->getCategory()->getName();
     }
 }
