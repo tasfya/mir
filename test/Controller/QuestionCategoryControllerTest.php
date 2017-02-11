@@ -30,8 +30,8 @@ class QuestionCategoryControllerTest extends \PHPUnit_Framework_TestCase
         $this->factory->getRequest()->query->set('conditions', ['category' => 0]);
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,11);
-        $this->assertEquals($data[1]->id,12);
+        $this->assertEquals($data[0]->id,77711);
+        $this->assertEquals($data[1]->id,77712);
     }
 
     public function testViewAction(){

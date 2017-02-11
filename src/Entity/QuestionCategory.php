@@ -13,12 +13,14 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class QuestionCategory
 {
+
+    const CODE = 777;
+
     /**
      * @var int
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Serializer\Expose()
      **/
     private $id;
 
@@ -80,23 +82,30 @@ class QuestionCategory
 
     /**
      * @var QuestionCategory $category
-     * @Serializer\Expose()
      * @ORM\ManyToOne(targetEntity="\MirMigration\Entity\QuestionCategory", inversedBy="categories")
      * @ORM\JoinColumn(name="place", referencedColumnName="id", nullable=false)
      */
     private $category;
 
     /**
-     * @Serializer\Expose()
-     * @Serializer\MaxDepth(2)
      * @ORM\OneToMany(targetEntity="\MirMigration\Entity\QuestionCategory", mappedBy="category")
      */
     private $categories;
 
     /**
      * @return mixed
+     * @Serializer\VirtualProperty()
      */
     public function getId()
+    {
+        return self::CODE.$this->id;
+    }
+
+    /**
+     * @return mixed
+     * @Serializer\VirtualProperty()
+     */
+    public function getOldId()
     {
         return $this->id;
     }
@@ -266,7 +275,7 @@ class QuestionCategory
         if (in_array($this->place, [0])) {
             $this->category = null;
         } else {
-            $this->category->check();
+            $this->getCategory()->check();
         }
     }
 

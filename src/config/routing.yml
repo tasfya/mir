@@ -78,6 +78,18 @@ book_discharges_one:
     controller: bookDischarge@view
     methods: [GET]
 
+# Article Category Routing
+article_categories_all:
+    path: /article-categories
+    controller: articleCategory@index
+    methods: [GET]
+
+# Article Routing
+article_all:
+    path: /articles
+    controller: article@index
+    methods: [GET]
+
 # Advanced Routing
 scholars:
     path: /advanced/scholars
@@ -105,7 +117,11 @@ explanation_courses:
     methods: [GET]
 khotabs:
     path: /advanced/khotabs
-    controller: advanced\Khotab@index
+    controller: advanced\Sound@khotabs
+    methods: [GET]
+mohadarates:
+    path: /advanced/mohadarates
+    controller: advanced\Sound@mohadarates
     methods: [GET]
 
 homepage:

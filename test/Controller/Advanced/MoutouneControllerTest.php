@@ -27,8 +27,8 @@ class MoutouneControllerTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction(){
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,67);
+        $this->assertEquals($data[0]->id,22267);
         $this->assertEquals($data[0]->title,"منهاج السالكين وتوضيح الفقه في الدين");
-        $this->assertEquals($data[1]->id,68);
+        $this->assertEquals($data[1]->id,22268);
     }
 }

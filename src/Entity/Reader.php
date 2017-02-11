@@ -378,6 +378,17 @@ class Reader
      * @return string
      */
     public function getScholarId(){
+        return self::CODE.$this->id;
+    }
+
+    /**
+     * @Serializer\SerializedName("old_id")
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     * @return string
+     */
+    public function getOldId(){
         return $this->id;
     }
+
 }

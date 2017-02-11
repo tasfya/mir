@@ -13,7 +13,9 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Sound{
 
-    const CODE = 3;
+    const CODE = 333;
+    const KHOTABE = 444;
+    const MOHADARATE = 999;
 
     /**
      * @var int
@@ -158,7 +160,7 @@ class Sound{
      */
     public function getId()
     {
-        return $this->id;
+        return self::CODE.$this->id;
     }
 
     /**
@@ -469,7 +471,7 @@ class Sound{
      * @Serializer\Since("0.1")
      */
     public function getExplanationId(){
-        return $this->getScholarId().$this->getMatneId();
+        return $this->getReader()->getId().$this->getCategoryId();
     }
 
     /**
@@ -484,11 +486,42 @@ class Sound{
      * @Serializer\VirtualProperty()
      * @Serializer\Since("0.1")
      */
+    public function getScholarName(){
+        return $this->getReader()->getName();
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
     public function getMatneId(){
-        if( $this->getCategory() == null ) return $this->place;
+        $place = $this->getParentCategory() == null ? $this->place : $this->getCategoryId();
+        return SoundCategory::CODE.$place;
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getMatneName(){
+
+        return $this->getParentCategory() == null ? "" :$this->getParentCategory()->getName();
+    }
+
+    public function getParentCategory(){
+        if( $this->getCategory() == null ) return null;
         return
             $this->getCategory()->getCategory()->getPlace() == 3
-                ? $this->getPlace() : $this->getCategory()->getPlace();
+                ? $this->getCategory() : $this->getCategory()->getCategory();
+    }
+
+    public function getCategoryId(){
+
+        return $this->getParentCategory() == null ? $this->place : $this->getParentCategory()->getId();
+    }
+
+    public function getOldId(){
+        return $this->id;
     }
 
 }
