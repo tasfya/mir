@@ -255,6 +255,15 @@ class Question{
      */
     public function getPath()
     {
+        return $this->path;
+    }
+
+    /**
+     * @return string
+     * @Serializer\VirtualProperty()
+     */
+    public function getUrl()
+    {
         return 'http://old.miraath.net/'.str_replace('../','', $this->path);
     }
 
