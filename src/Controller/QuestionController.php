@@ -24,7 +24,7 @@ class QuestionController extends Controller{
                 $request->get('date_end', null) == null ?null: new \DateTime($request->get('date_end'))
             );**/
         $questions = $repository->findBy([], [], 20, $offset);
-        foreach ($questions as $k => $question){
+        foreach ($questions as &$question){
             /** @var Question $question */
             $question->check();
         }
