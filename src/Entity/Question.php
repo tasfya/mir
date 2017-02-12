@@ -267,6 +267,7 @@ class Question{
         return 'http://old.miraath.net/'.str_replace('../','', $this->path);
     }
 
+
     /**
      * @param string $path
      * @return Question

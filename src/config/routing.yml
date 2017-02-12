@@ -123,6 +123,10 @@ mohadarates:
     path: /advanced/mohadarates
     controller: advanced\Sound@mohadarates
     methods: [GET]
+salasiles:
+    path: /advanced/salasiles
+    controller: advanced\Sound@salasiles
+    methods: [GET]
 
 homepage:
     path: /
