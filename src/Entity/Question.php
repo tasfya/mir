@@ -513,6 +513,7 @@ class Question{
     }
 
     public function check(){
+        $this->path = $this->getPath();
         if( in_array($this->getPlace(), [0,52,42,27,64,99] ) )
             $this->category = null;
         else
