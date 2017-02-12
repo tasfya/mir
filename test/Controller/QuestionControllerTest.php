@@ -24,9 +24,9 @@ class QuestionControllerTest extends \PHPUnit_Framework_TestCase
         $this->factory->getRequest()->query->set('date_begin', '2016-12-01');
         $response = $this->controller->indexAction();
         $data = json_decode($response->getContent());
-        $this->assertEquals($data[0]->id,8884191);
-        $this->assertEquals($data[0]->subject,'أفضل تحقيق لعلل الترمذي');
-        $this->assertEquals($data[1]->id,8884192);
+        $this->assertEquals($data[0]->id,8885);
+        $this->assertEquals($data[0]->subject,'يسأل عن حديث الثلاثة الذين يدخلون النار أول ما تُسجر بهم النار');
+        $this->assertEquals($data[1]->id,8886);
     }
 
     public function testViewAction(){
