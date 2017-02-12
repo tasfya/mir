@@ -30,6 +30,13 @@ class SoundController extends Controller
         return $this->getSounds(Sound::SALASILE, 9, true);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function liqaatesAction(){
+        return $this->getSounds(Sound::LIQAATE, 17, true);
+    }
+
     private function getSounds($code, $category, $with_category  = false){
         $request = $this->getRequest();
         /** @var SoundRepository $repository */
