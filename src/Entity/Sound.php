@@ -18,6 +18,7 @@ class Sound{
     const MOHADARATE = 999;
     const SALASILE = 1000;
     const LIQAATE = 2000;
+    const TURKIE = 3000;
 
     /**
      * @var int

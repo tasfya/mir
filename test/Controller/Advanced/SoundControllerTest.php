@@ -40,6 +40,14 @@ class SoundControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data[1]->id,99932);
     }
 
+    public function testMohadaratesTurkie1435Action(){
+        $response = $this->controller->mohadaratesTurkie1435Action();
+        $data = json_decode($response->getContent(), false);
+        $this->assertEquals($data[0]->id,30002735);
+        $this->assertEquals($data[0]->url,"http://old.miraath.net/files/audio/simat_ul_manhaj_is_salafy.mp3");
+        $this->assertEquals($data[1]->id,30002737);
+    }
+
     public function testSalasilesAction(){
         $response = $this->controller->salasilesAction();
         $data = json_decode($response->getContent(), false);

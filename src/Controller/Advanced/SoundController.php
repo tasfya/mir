@@ -26,6 +26,13 @@ class SoundController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
+    public function mohadaratesTurkie1435Action(){
+        return $this->getSounds(Sound::TURKIE, 405);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function salasilesAction(){
         return $this->getSounds(Sound::SALASILE, 9, true);
     }
