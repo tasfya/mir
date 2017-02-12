@@ -13,13 +13,17 @@ class QuestionController extends Controller{
 
         $request = $this->getRequest();
 
+        $page = $request->query->get('page', 1);
+        $offset = ($page - 1) * 20;
+
         /** @var QuestionRepository $repository */
         $repository = $this->getDoctrine()->getRepository(Question::class);
 
-        $questions = $repository->findByDates(
+        /**$questions = $repository->findByDates(
                 $request->get('date_begin', null) == null ?null: new \DateTime($request->get('date_begin')),
                 $request->get('date_end', null) == null ?null: new \DateTime($request->get('date_end'))
-            );
+            );**/
+        $questions = $repository->findBy([], [], 20, $offset);
         foreach ($questions as $k => $question){
             /** @var Question $question */
             $question->check();

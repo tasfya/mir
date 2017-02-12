@@ -173,9 +173,27 @@ class Question{
      * @return int
      * @Serializer\VirtualProperty()
      */
+    public function getScholarName()
+    {
+        return $this->getReader() == null ? : $this->getReader()->getName();
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
     public function getCategoryId()
     {
         return $this->getCategory() == null ?: $this->getCategory()->getId();
+    }
+
+    /**
+     * @return int
+     * @Serializer\VirtualProperty()
+     */
+    public function getCategoryName()
+    {
+        return $this->getCategory() == null ?: $this->getCategory()->getName();
     }
 
     /**
@@ -239,6 +257,16 @@ class Question{
     {
         return $this->path;
     }
+
+    /**
+     * @return string
+     * @Serializer\VirtualProperty()
+     */
+    public function getUrl()
+    {
+        return 'http://old.miraath.net/'.str_replace('../','', $this->path);
+    }
+
 
     /**
      * @param string $path

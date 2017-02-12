@@ -32,7 +32,7 @@ class SoundRepository extends EntityRepository{
 
         if( $category !== null ){
             $q->leftJoin('s.category', 'c')
-                ->andWhere('c.place = :category')
+                ->andWhere('c.place = :category or s.place = :category')
                 ->setParameter('category', $category);
         }
 

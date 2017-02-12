@@ -16,6 +16,9 @@ class Sound{
     const CODE = 333;
     const KHOTABE = 444;
     const MOHADARATE = 999;
+    const SALASILE = 1000;
+    const LIQAATE = 2000;
+    const TURKIE = 3000;
 
     /**
      * @var int

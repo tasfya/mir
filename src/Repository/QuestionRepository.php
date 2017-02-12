@@ -12,7 +12,8 @@ class QuestionRepository extends EntityRepository{
 
     public function findByDates( \DateTime $begin = null, \DateTime $end = null ){
         $q = $this->createQueryBuilder('q')
-            ->where('1=1');
+            ->where('1 = :answered')
+            ->setParameter('answered', 1);
 
         if( $begin !== null ){
             $q->andWhere('q.createdDate >= :begin')
