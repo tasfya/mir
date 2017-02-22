@@ -500,4 +500,20 @@ class BookDischarge
         }
     }
 
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getScholarId(){
+        return $this->getReader() ? $this->getReader()->getScholarId() : '';
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\Since("0.1")
+     */
+    public function getScholarName(){
+        return $this->getReader() ? $this->getReader()->getName() : '';
+    }
+
 }
