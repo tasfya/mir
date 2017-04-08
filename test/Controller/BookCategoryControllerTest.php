@@ -7,7 +7,7 @@ use MirMigration\Lib\AppFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class BookCategoryControllerTest extends \PHPUnit_Framework_TestCase
+class PaperCategoryControllerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var BookCategoryController */
     private $controller;
