@@ -58,6 +58,16 @@ books_one:
     controller: book@view
     methods: [GET]
 
+# Paper Category Routing
+paper_categories_all:
+    path: /paper-categories
+    controller: paperCategory@index
+    methods: [GET]
+papers_all:
+    path: /papers
+    controller: paper@index
+    methods: [GET]
+
 # Book Category Routing
 book_categories_all:
     path: /book-categories
